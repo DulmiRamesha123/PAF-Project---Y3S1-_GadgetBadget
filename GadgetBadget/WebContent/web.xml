@@ -15,4 +15,13 @@ id="WebApp_ID" version="4.0">
  <url-pattern>/Service/*</url-pattern>
 </servlet-mapping>
 
+  <servlet>
+ 		<servlet-name>Jersey Web Application2</servlet-name>
+ 		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+ 		<load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+ 		<servlet-name>Jersey Web Application2</servlet-name>
+ 		<url-pattern>/CompleteProjectService/*</url-pattern>
+  </servlet-mapping>
 </web-app>
