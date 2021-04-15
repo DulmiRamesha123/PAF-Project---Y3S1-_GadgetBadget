@@ -1,3 +1,5 @@
+
+
 package model;
 
 import java.sql.Connection;
@@ -151,7 +153,7 @@ public class CompleteProject {
 		 }
 		 return output;
 		 }
-		
+	
 		public String deleteItem(String proj_id)
 		 {
 		 String output = "";
@@ -178,6 +180,6 @@ public class CompleteProject {
 		 return output;
 		 }
 	
-	
 
 }
+
