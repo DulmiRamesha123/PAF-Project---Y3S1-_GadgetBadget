@@ -141,7 +141,7 @@ public class User {
 		 }
 		 return output;
 	}
-	public String deleteItem(String uID)
+	public String deleteUser(String uID)
 		 {
 			 String output = "";
 			 try
