@@ -61,6 +61,63 @@ public class CompleteProject {
 			}
 		 return output;
 		 }
+		
+		public String readItems()
+		 {
+		 String output = "";
+		 try
+		 {
+		 Connection con = connect();
+		 if (con == null)
+		 {return "Error while connecting to the database for reading."; }
+		 // Prepare the html table to be displayed
+		 output = "<table border='1'><tr><th>Project Code</th><th>Project Name</th>" +
+		 "<th>Project Description</th>" +
+		 "<th> Skills Required</th>" +
+		 "<th>Payment Method</th>" +
+		 "<th>Estimate Budget</th>" +
+		 "<th>Update</th><th>Remove</th></tr>";
+
+		 String query = "select * from complete_project";
+		 Statement stmt = con.createStatement();
+		 ResultSet rs = stmt.executeQuery(query);
+		 // iterate through the rows in the result set
+		 while (rs.next())
+		 {
+		 String proj_id = Integer.toString(rs.getInt("proj_id"));
+		 String proj_code = rs.getString("proj_code");
+		 String proj_name = rs.getString("proj_name");
+		 String proj_desc = rs.getString("proj_desc");
+		 String skills_required = rs.getString("skills_required");
+		 String payment_method = rs.getString("payment_method");
+		 String estimate_budget = Double.toString(rs.getDouble("estimate_budget"));
+		
+		 // Add into the html table
+		 output += "<tr><td>" + proj_code + "</td>";
+		 output += "<td>" + proj_name + "</td>";
+		 output += "<td>" + proj_desc + "</td>";
+		 output += "<td>" + skills_required + "</td>";
+		 output += "<td>" + payment_method + "</td>";
+		 output += "<td>" + estimate_budget + "</td>";
+		 
+		 // buttons
+		 output += "<td><input name='btnUpdate' type='button' value='Update'class='btn btn-secondary'></td>"
+		 + "<td><form method='post' action='items.jsp'>"
+		 + "<input name='btnRemove' type='submit' value='Remove'class='btn btn-danger'>"
+		 + "<input name='itemID' type='hidden' value='" + proj_id
+		 + "'>" + "</form></td></tr>";
+		 }
+		 con.close();
+		 // Complete the html table
+		 output += "</table>";
+		 }
+		 catch (Exception e)
+		 {
+		 output = "Error while reading the items.";
+		 System.err.println(e.getMessage());
+		 }
+		 return output;
+		 }
 	
 	
 
