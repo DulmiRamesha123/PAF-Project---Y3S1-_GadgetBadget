@@ -95,7 +95,7 @@ public class User {
 							
 							output += "</table>";
 		}
-	    //catc exception
+	    //catch exception
 		catch (Exception e)
 		{
 			output = "Error while reading the items.";
@@ -104,7 +104,7 @@ public class User {
 		return output;
 	 }
 	
-	
+	//Insert users to the database
 	
 	public String insertUser(String fname, String lname, String d_ob, String gender,String mail,String home_address)
 	 {
