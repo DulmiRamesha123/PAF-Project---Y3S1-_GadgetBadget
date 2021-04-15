@@ -5,6 +5,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -43,6 +44,27 @@ public class CompleteProjectService {
 	{
 	 String output = completeProjectObj.insertItem(proj_code,proj_name,proj_desc,skills_required,payment_method,estimate_budget);
 	 return output;
+	}
+	
+	@PUT
+	@Path("/")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String updateItem(String projData)
+	{
+	//Convert the input string to a JSON object
+	 JsonObject projObject = new JsonParser().parse(projData).getAsJsonObject();
+	//Read the values from the JSON object
+	 String proj_id = projObject.get("proj_id").getAsString();
+	 String proj_code = projObject.get("proj_code").getAsString();
+	 String proj_name = projObject.get("proj_name").getAsString();
+	 String proj_desc = projObject.get("proj_desc").getAsString();
+	 String skills_required = projObject.get("skills_required").getAsString();
+	 String payment_method = projObject.get("payment_method").getAsString();
+	 String estimate_budget = projObject.get("estimate_budget").getAsString();
+	 
+	 String output = completeProjectObj.updateItem(proj_id, proj_code, proj_name, proj_desc, skills_required, payment_method, estimate_budget);
+	return output;
 	}
 	
 	

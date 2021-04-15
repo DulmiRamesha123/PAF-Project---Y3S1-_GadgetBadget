@@ -118,6 +118,39 @@ public class CompleteProject {
 		 }
 		 return output;
 		 }
+		
+		public String updateItem(String ID, String code, String name, String desc, String skills, String pay_method, String budget)
+
+		 {
+		 String output = "";
+		 try
+		 {
+		 Connection con = connect();
+		 if (con == null)
+		 {return "Error while connecting to the database for updating."; }
+		 // create a prepared statement
+		 String query = "UPDATE complete_project SET proj_code=?,proj_name=?,proj_desc=?,skills_required=?,payment_method=?,estimate_budget=?WHERE proj_id=?";
+		 PreparedStatement preparedStmt = con.prepareStatement(query);
+		 // binding values
+		 preparedStmt.setString(1, code);
+		 preparedStmt.setString(2, name);
+		 preparedStmt.setString(3, desc);
+		 preparedStmt.setString(4, skills);
+		 preparedStmt.setString(5, pay_method);
+		 preparedStmt.setDouble(6, Double.parseDouble(budget));
+		 preparedStmt.setInt(7, Integer.parseInt(ID));
+		 // execute the statement
+		 preparedStmt.execute();
+		 con.close();
+		 output = "Updated successfully";
+		 }
+		 catch (Exception e)
+		 {
+		 output = "Error while updating the item.";
+		 System.err.println(e.getMessage());
+		 }
+		 return output;
+		 }
 	
 	
 
