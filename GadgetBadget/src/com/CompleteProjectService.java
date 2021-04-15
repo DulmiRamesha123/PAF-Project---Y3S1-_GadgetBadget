@@ -6,6 +6,7 @@ import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -64,6 +65,21 @@ public class CompleteProjectService {
 	 String estimate_budget = projObject.get("estimate_budget").getAsString();
 	 
 	 String output = completeProjectObj.updateItem(proj_id, proj_code, proj_name, proj_desc, skills_required, payment_method, estimate_budget);
+	return output;
+	}
+	
+	@DELETE
+	@Path("/")
+	@Consumes(MediaType.APPLICATION_XML)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String deleteItem(String projData)
+	{
+	//Convert the input string to an XML document
+	 Document doc = Jsoup.parse(projData, "", Parser.xmlParser());
+
+	//Read the value from the element <itemID>
+	 String proj_id = doc.select("proj_id").text();
+	 String output = completeProjectObj.deleteItem(proj_id);
 	return output;
 	}
 	
