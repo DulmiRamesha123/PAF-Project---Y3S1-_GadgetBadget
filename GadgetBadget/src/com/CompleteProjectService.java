@@ -68,6 +68,8 @@ public class CompleteProjectService {
 	return output;
 	}
 	
+	//Delete part 
+	
 	@DELETE
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_XML)
