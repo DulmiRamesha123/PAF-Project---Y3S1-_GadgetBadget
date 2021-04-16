@@ -109,35 +109,49 @@ public class User {
 	public String insertUser(String fname, String lname, String d_ob, String gender,String mail,String home_address)
 	 {
 		String output = "";
-		try
-		{
-		Connection con = connect();
-			 if (con == null)
-			 {return "Error while connecting to the database for inserting."; }
-				 // create a prepared statement
-				 String query = " insert into user('uID','firstName','lastName','dob','gender','email','address') values (?, ?, ?, ?, ?,?,?)";
-				 PreparedStatement preparedStmt = con.prepareStatement(query);
-				 // binding values
-				 preparedStmt.setInt(1, 0);
-				 preparedStmt.setString(2, fname);
-				 preparedStmt.setString(3, lname);
-				 preparedStmt.setString(4, d_ob);
-				 preparedStmt.setString(5, gender);
-				 preparedStmt.setString(6,  mail);
-				 preparedStmt.setString(7, home_address);
-				// execute the statement
+		
+		try{
+			Connection con = connect();
+			
+				 if (con == null){
+					 
+					 	return "An error occured when inserting user details to the Data Base"; 
+					 	
+					 			 }
 				 
-				 preparedStmt.execute();
-				 con.close();
-				 output = "Inserted successfully";
+				 
+				String query = " insert into user('uID','firstName','lastName','dob','gender','email','address') values (?, ?, ?, ?, ?,?,?)";
+			    PreparedStatement preparedStmt = con.prepareStatement(query);
+					  
+			    // binding values
+					 
+				preparedStmt.setInt(1, 0);
+			    preparedStmt.setString(2, fname);
+				preparedStmt.setString(3, lname);
+				preparedStmt.setString(4, d_ob);
+				preparedStmt.setString(5, gender);
+			    preparedStmt.setString(6,  mail);
+			    preparedStmt.setString(7, home_address);
+					 
+			  //Execution of the prepared statement  
+			    
+		    	preparedStmt.execute();
+			    con.close();
+				output = "Inserted successfully";
 		}
-		catch (Exception e)
+		//catch exception
+		catch (Exception ex)
 			 {
-			 output = "Error while inserting the user.";
-			 System.err.println(e.getMessage());
+				 output = "An error occured when inserting user";
+				 //print the error
+				 System.err.println(ex.getMessage());
 			 }
+		
 		return output;
+		
 		}
+	
+	//update the user details according to user id
 	
 	public String updateUser(String uid, String fname, String lname, String d_ob, String gender,String mail,String home_address)
 
@@ -145,13 +159,20 @@ public class User {
 		 String output = "";
 		 try
 		 {
-			 Connection con = connect();
+			 Connection con = connect();//check the connection
+			 
 			 if (con == null)
-				 {return "Error while connecting to the database for updating."; }
-				 // create a prepared statement
+				 {
+				 	return "Error occured when updating user details";
+				 }
+			 
+			 		//updating values 
+			 
 					 String query = "UPDATE user SET firstName=?,lastName=?,dob=?,gender=?,email=?,address=?, WHERE uID=?";
 					 PreparedStatement preparedStmt = con.prepareStatement(query);
-					 // binding values
+					 
+					 // binding values 
+					 
 					 preparedStmt.setString(1, fname);
 					 preparedStmt.setString(2, lname);
 					 preparedStmt.setString(2, d_ob);
@@ -159,15 +180,23 @@ public class User {
 					 preparedStmt.setString(5, mail);
 					 preparedStmt.setString(4, home_address);
 					 preparedStmt.setInt(5, Integer.parseInt(uid));
-					 // execute the statement
+					 
+					//Execution of the prepared statement  
+					 
 					 preparedStmt.execute();
+					 
+					 //close the connection after updating
+					 
 					 con.close();
-				 output = "Updated successfully";
+					 
+					 //print the message when successfully updated the user details
+				    output = "Updated successfully";
 		 }
-		 catch (Exception e)
+		 //catch exception
+		 catch (Exception ex)
 		 {
-		 output = "Error while updating the User";
-		 System.err.println(e.getMessage());
+			 output = "Error while updating the User";
+			 System.err.println(ex.getMessage());
 		 }
 		 return output;
 	}
