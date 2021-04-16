@@ -195,36 +195,58 @@ public class User {
 		 //catch exception
 		 catch (Exception ex)
 		 {
-			 output = "Error while updating the User";
+			 output = "An error occured when updating user";
 			 System.err.println(ex.getMessage());
 		 }
 		 return output;
 	}
+	
+	//Delete a user according to user id
+	//take a user id as a input
+	
 	public String deleteUser(String uID)
 		 {
 			 String output = "";
-			 try
-			 {
-				 Connection con = connect();
-				 if (con == null)
-					 {return "Error while connecting to the database for deleting."; }
-						 // create a prepared statement
-						 String query = "delete from user where uID=?";
-						 PreparedStatement preparedStmt = con.prepareStatement(query);
-						 // binding values
-						 preparedStmt.setInt(1, Integer.parseInt(uID));
-						 // execute the statement
-						 preparedStmt.execute();
-						 con.close();
-						 output = "Deleted successfully";
-			 }
-			 catch (Exception e)
-			 {
-				 output = "Error while deleting the user.";
-				 System.err.println(e.getMessage());
-			 }
-			 return output;
-	 }
+			 
+			 try{
+				 
+				  Connection con = connect();//check connection
+				  if (con == null)
+					  {
+					  	return "Error: Can not connect to the Data Base to delete the user details";
+					  }
+						  
+						  String query = "delete from user where uID=?";
+						  
+						  PreparedStatement preparedStmt = con.prepareStatement(query);
+						  
+						  // binding values
+						  
+						  preparedStmt.setInt(1, Integer.parseInt(uID));
+						  
+						  //Execution of the prepared statement 
+						  
+						  preparedStmt.execute();
+						  
+						  //close the connection after deleting
+						  
+						  con.close();
+						  
+						  //print a message after successfully deleting
+						  
+						  output = "Deleted successfully";
+						 
+			   }
+			 //catch exception
+			   catch (Exception ex)
+			   {
+				  output = "An error occured when deleting user";
+				  System.err.println(ex.getMessage());
+				  
+			   }
+			 
+		     return output;
+	 } 
 	
 
 }
