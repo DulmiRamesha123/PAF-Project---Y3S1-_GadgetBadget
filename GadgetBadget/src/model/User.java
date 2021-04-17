@@ -106,7 +106,7 @@ public class User {
 	
 	//Insert users to the database
 	
-	public String insertUser(String fname, String lname, String d_ob, String gender,String mail,String home_address)
+	public String insertUser(String fname, String lname, String d_ob, String gender,String mail,String home_address,String password)
 	 {
 		String output = "";
 		
@@ -120,7 +120,7 @@ public class User {
 					 			 }
 				 
 				 
-				String query = " insert into user('uID','firstName','lastName','dob','gender','email','address') values (?, ?, ?, ?, ?,?,?)";
+				String query = " insert into user(`uID`,`firstName`,`lastName`,`dob`,`gender`,`email`,`address`,`password`) values (?, ?, ?,?, ?,?,?,?)";
 			    PreparedStatement preparedStmt = con.prepareStatement(query);
 					  
 			    // binding values
@@ -132,6 +132,7 @@ public class User {
 				preparedStmt.setString(5, gender);
 			    preparedStmt.setString(6,  mail);
 			    preparedStmt.setString(7, home_address);
+			    preparedStmt.setString(8, password);
 					 
 			  //Execution of the prepared statement  
 			    
@@ -153,7 +154,7 @@ public class User {
 	
 	//update the user details according to user id
 	
-	public String updateUser(String uid, String fname, String lname, String d_ob, String gender,String mail,String home_address)
+	public String updateUser(String uid, String fname, String lname, String d_ob, String gender,String mail,String home_address,String password)
 
 	{
 		 String output = "";
@@ -168,18 +169,19 @@ public class User {
 			 
 			 		//updating values 
 			 
-					 String query = "UPDATE user SET firstName=?,lastName=?,dob=?,gender=?,email=?,address=?, WHERE uID=?";
+					 String query = "UPDATE user SET firstName=?,lastName=?,dob=?,gender=?,email=?,address=?,password=? WHERE uID=?";
 					 PreparedStatement preparedStmt = con.prepareStatement(query);
 					 
 					 // binding values 
 					 
 					 preparedStmt.setString(1, fname);
 					 preparedStmt.setString(2, lname);
-					 preparedStmt.setString(2, d_ob);
+					 preparedStmt.setString(3, d_ob);
 					 preparedStmt.setString(4, gender);
 					 preparedStmt.setString(5, mail);
-					 preparedStmt.setString(4, home_address);
-					 preparedStmt.setInt(5, Integer.parseInt(uid));
+					 preparedStmt.setString(6, home_address);
+					 preparedStmt.setString(7, password);
+					 preparedStmt.setInt(8, Integer.parseInt(uid));
 					 
 					//Execution of the prepared statement  
 					 
