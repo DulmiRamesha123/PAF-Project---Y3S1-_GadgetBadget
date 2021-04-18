@@ -24,6 +24,14 @@ import model.AddResearcher;
 public class AddResearcherService {
 
 AddResearcher addresearcherObj = new AddResearcher();
+
+	@GET
+	@Path("/")
+	@Produces(MediaType.TEXT_HTML)
+	public String readItems()
+	{
+		return addresearcherObj.readItems();
+	}
 	
 	@POST
 	@Path("/")
