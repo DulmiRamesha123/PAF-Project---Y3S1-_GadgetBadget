@@ -12,7 +12,7 @@ id="WebApp_ID" version="4.0">
 </servlet>
 <servlet-mapping>
  <servlet-name>Jersey Web Application</servlet-name>
- <url-pattern>/GadgetBadgetService/*</url-pattern>
+ <url-pattern>/UserService/*</url-pattern>
 </servlet-mapping>
 
 <servlet>

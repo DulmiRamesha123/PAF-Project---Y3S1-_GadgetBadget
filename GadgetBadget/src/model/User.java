@@ -55,6 +55,8 @@ public class User {
 									 "<th>Gender</th>" +
 									 "<th>Email</th>" +
 									 "<th>Address</th>" +
+									 "<th>Buyer</th>" +
+									 "<th>Researcher</th>" +
 									 "<th>Update</th><th>Remove</th></tr></B>";
 			
 						//get the data from database
@@ -74,6 +76,8 @@ public class User {
 							String gender = rs.getString("gender");
 							String email = rs.getString("email");
 							String address = rs.getString("address");
+							String buyerType = rs.getString("typeBuyer(T/F)");
+							String researcherType = rs.getString("typeResearcher(T/F)");
 							
 							//put the details retrieved from database to above created html table
 							
@@ -83,6 +87,8 @@ public class User {
 							output += "<td>" + gender + "</td>";
 							output += "<td>" + email + "</td>";
 							output += "<td>" + address + "</td>";
+							output += "<td>" + buyerType + "</td>";
+							output += "<td>" + researcherType + "</td>";
 							
 							// buttons
 							output += "<td><input name='btnUpdate' type='button' value='Update' class='btn btn-secondary'></td>"+ 
@@ -106,7 +112,7 @@ public class User {
 	
 	//Insert users to the database
 	
-	public String insertUser(String fname, String lname, String d_ob, String gender,String mail,String home_address,String password)
+	public String insertUser(String fname, String lname, String d_ob, String gender,String mail,String home_address,String password,String buyerT,String researcherT)
 	 {
 		String output = "";
 		
@@ -120,7 +126,7 @@ public class User {
 					 			 }
 				 
 				 
-				String query = " insert into user(`uID`,`firstName`,`lastName`,`dob`,`gender`,`email`,`address`,`password`) values (?, ?, ?,?, ?,?,?,?)";
+				String query = " insert into user(`uID`,`firstName`,`lastName`,`dob`,`gender`,`email`,`address`,`password`,`typeBuyer(T/F)`,`typeResearcher(T/F)`) values (?, ?, ?,?, ?,?,?,?,?,?)";
 			    PreparedStatement preparedStmt = con.prepareStatement(query);
 					  
 			    // binding values
@@ -133,6 +139,8 @@ public class User {
 			    preparedStmt.setString(6,  mail);
 			    preparedStmt.setString(7, home_address);
 			    preparedStmt.setString(8, password);
+			    preparedStmt.setString(9, buyerT);
+			    preparedStmt.setString(10, researcherT);
 					 
 			  //Execution of the prepared statement  
 			    
@@ -154,7 +162,7 @@ public class User {
 	
 	//update the user details according to user id
 	
-	public String updateUser(String uid, String fname, String lname, String d_ob, String gender,String mail,String home_address,String password)
+	public String updateUser(String uid, String fname, String lname, String d_ob, String gender,String mail,String home_address,String password,String buyerT,String researcherT)
 
 	{
 		 String output = "";
@@ -169,7 +177,7 @@ public class User {
 			 
 			 		//updating values 
 			 
-					 String query = "UPDATE user SET firstName=?,lastName=?,dob=?,gender=?,email=?,address=?,password=? WHERE uID=?";
+					 String query = "UPDATE user SET firstName=?,lastName=?,dob=?,gender=?,email=?,address=?,password=?,typeBuyer(T/F)=?,typeResearcher(T/F)=? WHERE uID=?";
 					 PreparedStatement preparedStmt = con.prepareStatement(query);
 					 
 					 // binding values 
@@ -181,7 +189,9 @@ public class User {
 					 preparedStmt.setString(5, mail);
 					 preparedStmt.setString(6, home_address);
 					 preparedStmt.setString(7, password);
-					 preparedStmt.setInt(8, Integer.parseInt(uid));
+					 preparedStmt.setString(8, buyerT);
+					 preparedStmt.setString(9, researcherT);
+					 preparedStmt.setInt(10, Integer.parseInt(uid));
 					 
 					//Execution of the prepared statement  
 					 
