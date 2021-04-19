@@ -43,13 +43,14 @@ public class UserService
 					 @FormParam("gender_M_F") String gender,
 					 @FormParam("email") String email,
 					 @FormParam("address") String address,
+					 @FormParam("phone") String phone,
 					 @FormParam("password") String password,
 					 @FormParam("typeBuyer_T_F") String typeBuyer,
 					 @FormParam("typeResearcher_T_F") String typeResearcher)
 			
 			{
 				//output
-				String output = userObj.insertUser(firstName, lastName, dob, gender, email,address,password,typeBuyer,typeResearcher);
+				String output = userObj.insertUser(firstName, lastName, dob, gender, email,address,phone,password,typeBuyer,typeResearcher);
 				return output;
 			}
 			
@@ -77,10 +78,12 @@ public class UserService
 			 String gender = userObject.get("gender_M_F").getAsString();
 			 String email  = userObject.get("email").getAsString();
 			 String address  = userObject.get("address").getAsString();
+			 String phone  = userObject.get("phone").getAsString();
 			 String password  = userObject.get("password").getAsString();
 			 String typeBuyer  = userObject.get("typeBuyer_T_F").getAsString();
 			 String typeResearcher  = userObject.get("typeResearcher_T_F").getAsString();
-			 String output = userObj.updateUser(uID, firstName, lastName, dob, gender,email,address,password,typeBuyer,typeResearcher);
+			 
+			 String output = userObj.updateUser(uID, firstName, lastName, dob, gender,email,address,phone,password,typeBuyer,typeResearcher);
 			 return output;
 			}
 			
