@@ -25,8 +25,5 @@ id="WebApp_ID" version="4.0">
  		<url-pattern>/CompleteProjectService/*</url-pattern>
   </servlet-mapping>
   
-  
-
-
 
 </web-app>
