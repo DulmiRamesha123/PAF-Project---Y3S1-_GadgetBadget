@@ -42,7 +42,7 @@ public class UserBuyer {
 				 
 						 // output as a table
 				 
-						output = "<table border='2'><B>"+
+						output = "<center><h1>Buyer Details<h1><table border='2'><B>"+
 								     "<tr><th>User ID</th>"+
 								     "<th>User Code</th>"+
 								     "<th>First Name</th>"+
@@ -109,7 +109,7 @@ public class UserBuyer {
 				 
 						 // output as a table
 				 
-						output = "<table border='2'><B>"+
+						output =  "<center><h1>Researcher Details<h1><table border='2'><B>"+
 								     "<tr><th>User ID</th>"+
 								     "<th>User Code</th>"+
 								     "<th>First Name</th>"+
@@ -177,7 +177,7 @@ public class UserBuyer {
 				 
 						 // output as a table
 				 
-						output = "<table border='2'><B>"+
+						output =  "<center><h1>Funders Details<h1><table border='2'><B>"+
 								     "<tr><th>User ID</th>"+
 								     "<th>User Code</th>"+
 								     "<th>First Name</th>"+
@@ -218,7 +218,7 @@ public class UserBuyer {
 							
 							// close the above created html table
 							
-							output += "</table>";
+							output += "</table></center>";
 		}
 	    //catch exception
 		catch (Exception e)

@@ -48,7 +48,7 @@ public class User {
 				 
 						 // output as a table
 				 
-						output = "<table border='2'><B>"+
+						output = "<center><h1>User Details<h1><table border='2'><B>"+
 								     "<tr><th>User ID</th>"+
 								     "<th>User Code</th>"+
 								     "<th>First Name</th>"+

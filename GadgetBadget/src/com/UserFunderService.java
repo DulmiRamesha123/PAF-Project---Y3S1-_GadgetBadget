@@ -12,16 +12,16 @@ import model.UserBuyer;
 
 public class UserFunderService {
 	
-	UserBuyer buyerObj = new UserBuyer();
+	UserBuyer funderObj = new UserBuyer();
 	@GET
 	@Path("/")
 	@Produces(MediaType.TEXT_HTML)
 	
 	//Read user objects
 	
-	public String readBuyers()
+	public String readFunders()
 	 {
-		return buyerObj.readBuyers();
+		return funderObj.readFunders();
 	 }
 
 }
