@@ -52,11 +52,11 @@ public class User {
 								     "<tr><th>First Name</th>"+
 					                 "<th>Last Name</th>" +
 									 "<th>Date of Birth</th>" +
-									 "<th>Gender</th>" +
+									 "<th>Gender(M/F)</th>" +
 									 "<th>Email</th>" +
 									 "<th>Address</th>" +
-									 "<th>Buyer</th>" +
-									 "<th>Researcher</th>" +
+									 "<th>Buyer(T/F)</th>" +
+									 "<th>Researcher(T/F)</th>" +
 									 "<th>Update</th><th>Remove</th></tr></B>";
 			
 						//get the data from database
@@ -73,11 +73,11 @@ public class User {
 							String firstName= rs.getString("firstName");
 							String lastName = rs.getString("lastName");
 							String dob =  rs.getString("dob");
-							String gender = rs.getString("gender");
+							String gender = rs.getString("gender_M_F");
 							String email = rs.getString("email");
 							String address = rs.getString("address");
-							String buyerType = rs.getString("typeBuyer(T/F)");
-							String researcherType = rs.getString("typeResearcher(T/F)");
+							String buyerType = rs.getString("typeBuyer_T_F");
+							String researcherType = rs.getString("typeResearcher_T_F");
 							
 							//put the details retrieved from database to above created html table
 							
@@ -126,7 +126,7 @@ public class User {
 					 			 }
 				 
 				 
-				String query = " insert into user(`uID`,`firstName`,`lastName`,`dob`,`gender`,`email`,`address`,`password`,`typeBuyer(T/F)`,`typeResearcher(T/F)`) values (?, ?, ?,?, ?,?,?,?,?,?)";
+				String query = " insert into user(`uID`,`firstName`,`lastName`,`dob`,`gender_M_F`,`email`,`address`,`password`,`typeBuyer_T_F`,`typeResearcher_T_F`) values (?, ?, ?,?, ?,?,?,?,?,?)";
 			    PreparedStatement preparedStmt = con.prepareStatement(query);
 					  
 			    // binding values
@@ -177,7 +177,7 @@ public class User {
 			 
 			 		//updating values 
 			 
-					 String query = "UPDATE user SET firstName=?,lastName=?,dob=?,gender=?,email=?,address=?,password=?,typeBuyer(T/F)=?,typeResearcher(T/F)=? WHERE uID=?";
+					 String query = "UPDATE user SET firstName=?,lastName=?,dob=?,gender_M_F=?,email=?,address=?,password=?,typeBuyer_T_F=?,typeResearcher_T_F=? WHERE uID=?";
 					 PreparedStatement preparedStmt = con.prepareStatement(query);
 					 
 					 // binding values 

@@ -40,12 +40,12 @@ public class UserService
 					 @FormParam("firstName") String firstName,
 					 @FormParam("lastName") String lastName,
 					 @FormParam("dob") String dob,
-					 @FormParam("gender") String gender,
+					 @FormParam("gender_M_F") String gender,
 					 @FormParam("email") String email,
 					 @FormParam("address") String address,
 					 @FormParam("password") String password,
-					 @FormParam("typeBuyer(T/F)") String typeBuyer,
-					 @FormParam("typeResearcher(T/F)") String typeResearcher)
+					 @FormParam("typeBuyer_T_F") String typeBuyer,
+					 @FormParam("typeResearcher_T_F") String typeResearcher)
 			
 			{
 				//output
@@ -74,12 +74,12 @@ public class UserService
 			 String firstName = userObject.get("firstName").getAsString();
 			 String lastName = userObject.get("lastName").getAsString();
 			 String dob = userObject.get("dob").getAsString();
-			 String gender = userObject.get("gender").getAsString();
+			 String gender = userObject.get("gender_M_F").getAsString();
 			 String email  = userObject.get("email").getAsString();
 			 String address  = userObject.get("address").getAsString();
 			 String password  = userObject.get("password").getAsString();
-			 String typeBuyer  = userObject.get("typeBuyer(T/F)").getAsString();
-			 String typeResearcher  = userObject.get("typeResearcher(T/F)").getAsString();
+			 String typeBuyer  = userObject.get("typeBuyer_T_F").getAsString();
+			 String typeResearcher  = userObject.get("typeResearcher_T_F").getAsString();
 			 String output = userObj.updateUser(uID, firstName, lastName, dob, gender,email,address,password,typeBuyer,typeResearcher);
 			 return output;
 			}
