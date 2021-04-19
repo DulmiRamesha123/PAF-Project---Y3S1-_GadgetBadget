@@ -24,7 +24,17 @@ import model.InnovativeProject;
 public class InnovativeProjectService {
 	
 	InnovativeProject innovetiveObj = new InnovativeProject();
+	
+	@GET
+	@Path("/")
+	@Produces(MediaType.TEXT_HTML)
+	public String readItems()
+	{
+		return innovetiveObj.readItems();
+	}
 
+	//insert part
+	
 	@POST
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
