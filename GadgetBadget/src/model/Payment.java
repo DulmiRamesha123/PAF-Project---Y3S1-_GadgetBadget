@@ -121,5 +121,49 @@ public class Payment {
 			return output;
 		}
 		
+		//updatepayments
+
+				public String updatePayment(String ID, String type, String cusid, String productid, String productname , String gbfee, String servicecg , String othercg, String vat ,String totpay)
+
+				{
+					String output = "";
+					try {
+						Connection con = connect();
+
+						if (con == null)
+
+						{
+							return "Error while connecting to the database for updating.";
+						}
+
+						// create a prepared statement
+
+						String query = "UPDATE paymenttb SET InvoiceType=?,CusID=?,ProductID=?,ProductName=?,GBFee=?,ServiceCharge=?,OtherCharge=?,VAT=?,TotalPayment=? WHERE InvoiceID=?";
+
+						PreparedStatement preparedStmt = con.prepareStatement(query);
+						// binding values
+
+						preparedStmt.setString(1, type);
+						preparedStmt.setString(2, cusid);
+						preparedStmt.setString(2, productid);
+						preparedStmt.setString(2, productname);
+						preparedStmt.setDouble(3, Double.parseDouble(gbfee));
+						preparedStmt.setDouble(3, Double.parseDouble(servicecg));
+						preparedStmt.setDouble(3, Double.parseDouble(othercg));
+						preparedStmt.setDouble(3, Double.parseDouble(vat));
+						preparedStmt.setDouble(3, Double.parseDouble(totpay));
+						preparedStmt.setInt(5, Integer.parseInt(ID));
+						
+						// execute the statement
+						preparedStmt.execute();
+						con.close();
+						output = "Updated successfully";
+					} catch (Exception e) {
+						output = "Error while updating the payments.";
+						System.err.println(e.getMessage());
+					}
+					return output;
+				}		
+		
 		
 }
