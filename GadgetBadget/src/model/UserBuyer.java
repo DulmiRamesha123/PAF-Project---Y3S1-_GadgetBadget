@@ -44,6 +44,7 @@ public class UserBuyer {
 				 
 						output = "<table border='2'><B>"+
 								     "<tr><th>User ID</th>"+
+								     "<th>User Code</th>"+
 								     "<th>First Name</th>"+
 					                 "<th>Last Name</th>" +
 									 "<th>Email</th>" +
@@ -51,7 +52,7 @@ public class UserBuyer {
 			
 						//get the data from database
 						
-						String query = "select uID,firstName,lastname,email,phone from user where typeBuyer_T_F = 'T'";
+						String query = "select uID,userCode,firstName,lastname,email,phone from user where typeBuyer_T_F = 'T'";
 						
 						Statement stmt = con.createStatement();
 						ResultSet rs = stmt.executeQuery(query);
@@ -60,6 +61,7 @@ public class UserBuyer {
 						while (rs.next())
 						{
 							String uID = Integer.toString(rs.getInt("uID"));
+							String userCode= rs.getString("userCode");
 							String firstName= rs.getString("firstName");
 							String lastName = rs.getString("lastName");
 							String email = rs.getString("email");
@@ -68,6 +70,7 @@ public class UserBuyer {
 							//put the details retrieved from database to above created html table
 							
 							output += "<tr><td>" + uID + "</td>";
+							output += "<td>" + userCode + "</td>";
 							output += "<td>" + firstName + "</td>";
 							output += "<td>" + lastName + "</td>";
 							output += "<td>" + email + "</td>";
@@ -108,6 +111,7 @@ public class UserBuyer {
 				 
 						output = "<table border='2'><B>"+
 								     "<tr><th>User ID</th>"+
+								     "<th>User Code</th>"+
 								     "<th>First Name</th>"+
 					                 "<th>Last Name</th>" +
 									 "<th>Email</th>" +
@@ -115,7 +119,7 @@ public class UserBuyer {
 			
 						//get the data from database
 						
-						String query = "select uID,firstName,lastname,email,phone from user where typeResearcher_T_F = 'T'";
+						String query = "select uID,userCode,firstName,lastname,email,phone from user where typeResearcher_T_F = 'T'";
 						
 						Statement stmt = con.createStatement();
 						ResultSet rs = stmt.executeQuery(query);
@@ -124,6 +128,7 @@ public class UserBuyer {
 						while (rs.next())
 						{
 							String uID = Integer.toString(rs.getInt("uID"));
+							String userCode= rs.getString("userCode");
 							String firstName= rs.getString("firstName");
 							String lastName = rs.getString("lastName");
 							String email = rs.getString("email");
@@ -132,6 +137,7 @@ public class UserBuyer {
 							//put the details retrieved from database to above created html table
 							
 							output += "<tr><td>" + uID + "</td>";
+							output += "<td>" + userCode + "</td>";
 							output += "<td>" + firstName + "</td>";
 							output += "<td>" + lastName + "</td>";
 							output += "<td>" + email + "</td>";
@@ -173,6 +179,7 @@ public class UserBuyer {
 				 
 						output = "<table border='2'><B>"+
 								     "<tr><th>User ID</th>"+
+								     "<th>User Code</th>"+
 								     "<th>First Name</th>"+
 					                 "<th>Last Name</th>" +
 									 "<th>Email</th>" +
@@ -180,7 +187,7 @@ public class UserBuyer {
 			
 						//get the data from database
 						
-						String query = "select uID,firstName,lastname,email,phone from user where typeFundingBodies_T_F = 'T'";
+						String query = "select uID,userCode,firstName,lastname,email,phone from user where typeFundingBodies_T_F = 'T'";
 						
 						Statement stmt = con.createStatement();
 						ResultSet rs = stmt.executeQuery(query);
@@ -189,6 +196,7 @@ public class UserBuyer {
 						while (rs.next())
 						{
 							String uID = Integer.toString(rs.getInt("uID"));
+							String userCode= rs.getString("userCode");
 							String firstName= rs.getString("firstName");
 							String lastName = rs.getString("lastName");
 							String email = rs.getString("email");
@@ -197,6 +205,7 @@ public class UserBuyer {
 							//put the details retrieved from database to above created html table
 							
 							output += "<tr><td>" + uID + "</td>";
+							output += "<td>" + userCode + "</td>";
 							output += "<td>" + firstName + "</td>";
 							output += "<td>" + lastName + "</td>";
 							output += "<td>" + email + "</td>";
