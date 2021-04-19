@@ -13,7 +13,7 @@ id="WebApp_ID" version="4.0">
 </servlet>
 <servlet-mapping>
  <servlet-name>Jersey Web Application</servlet-name>
- <url-pattern>/PaymentService/*</url-pattern>
+ <url-pattern>/Service/*</url-pattern>
 </servlet-mapping>
 
 <servlet>
@@ -33,17 +33,8 @@ id="WebApp_ID" version="4.0">
   </servlet>
   <servlet-mapping>
  		<servlet-name>Jersey Web Application</servlet-name>
- 		<url-pattern>/AddResearcherService/*</url-pattern>
+ 		<url-pattern>/InnovativeProjectService/*</url-pattern>
   </servlet-mapping>
   
-
-<welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
 
 </web-app>
