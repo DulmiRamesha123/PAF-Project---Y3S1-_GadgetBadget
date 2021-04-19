@@ -34,7 +34,7 @@ public class UserService
 			//insert user
 			
 			public String insertUser(
-					
+					 @FormParam("userCode") String userCode,
 					 @FormParam("firstName") String firstName,
 					 @FormParam("lastName") String lastName,
 					 @FormParam("dob") String dob,
@@ -49,7 +49,7 @@ public class UserService
 			
 			{
 				//output
-				String output = userObj.insertUser(firstName, lastName, dob, gender, email,address,phone,password,typeBuyer,typeResearcher,typeFunder);
+				String output = userObj.insertUser(userCode,firstName, lastName, dob, gender, email,address,phone,password,typeBuyer,typeResearcher,typeFunder);
 				return output;
 			}
 			
@@ -71,6 +71,7 @@ public class UserService
 			//Read the values from the JSON object
 			 
 			 String uID = userObject.get("uID").getAsString();
+			 String uCode = userObject.get("userCode").getAsString();
 			 String firstName = userObject.get("firstName").getAsString();
 			 String lastName = userObject.get("lastName").getAsString();
 			 String dob = userObject.get("dob").getAsString();
@@ -83,7 +84,7 @@ public class UserService
 			 String typeResearcher  = userObject.get("typeResearcher_T_F").getAsString();
 			 String typeFunder  = userObject.get("typeFundingBodies_T_F").getAsString();
 			 
-			 String output = userObj.updateUser(uID, firstName, lastName, dob, gender,email,address,phone,password,typeBuyer,typeResearcher,typeFunder);
+			 String output = userObj.updateUser(uID,uCode, firstName, lastName, dob, gender,email,address,phone,password,typeBuyer,typeResearcher,typeFunder);
 			 return output;
 			}
 			
