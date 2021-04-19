@@ -109,7 +109,7 @@ public class User {
 	    //catch exception
 		catch (Exception e)
 		{
-			output = "Error while reading the items.";
+			output = "Error while reading the Usera.";
 			System.err.println(e.getMessage());
 		}
 		return output;

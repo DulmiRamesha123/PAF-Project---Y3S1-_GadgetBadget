@@ -51,7 +51,7 @@ public class UserBuyer {
 			
 						//get the data from database
 						
-						String query = "select uID,firstName,lastname,email,phone from user";
+						String query = "select uID,firstName,lastname,email,phone from user where typeBuyer_T_F = 'T'";
 						
 						Statement stmt = con.createStatement();
 						ResultSet rs = stmt.executeQuery(query);
@@ -90,5 +90,68 @@ public class UserBuyer {
 		}
 		return output;
 	 }
-    
+	public String readResearchers()
+	 {
+			 String output = "";
+			 
+			 try{
+				 
+				 Connection con = connect();
+				 
+				 if (con == null)
+					 //if connection failed printing a error message
+						{
+					 		return "Error while connecting to the database for reading."; 
+					 	}
+				 
+						 // output as a table
+				 
+						output = "<table border='2'><B>"+
+								     "<tr><th>User ID</th>"+
+								     "<th>First Name</th>"+
+					                 "<th>Last Name</th>" +
+									 "<th>Email</th>" +
+									 "<th>Phone</th></tr></B>";
+			
+						//get the data from database
+						
+						String query = "select uID,firstName,lastname,email,phone from user where typeResearcher_T_F = 'T'";
+						
+						Statement stmt = con.createStatement();
+						ResultSet rs = stmt.executeQuery(query);
+						
+						
+						while (rs.next())
+						{
+							String uID = Integer.toString(rs.getInt("uID"));
+							String firstName= rs.getString("firstName");
+							String lastName = rs.getString("lastName");
+							String email = rs.getString("email");
+							String phone = rs.getString("phone");
+							
+							//put the details retrieved from database to above created html table
+							
+							output += "<tr><td>" + uID + "</td>";
+							output += "<td>" + firstName + "</td>";
+							output += "<td>" + lastName + "</td>";
+							output += "<td>" + email + "</td>";
+							output += "<td>" + phone + "</td></tr>";
+							
+							
+							 
+							}
+							con.close();
+							
+							// close the above created html table
+							
+							output += "</table>";
+		}
+	    //catch exception
+		catch (Exception e)
+		{
+			output = "Error while reading the Researchers.";
+			System.err.println(e.getMessage());
+		}
+		return output;
+	 }    
 }
