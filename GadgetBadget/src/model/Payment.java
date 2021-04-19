@@ -16,7 +16,7 @@ public class Payment {
 			Class.forName("com.mysql.jdbc.Driver");
 
 			// Provide the correct details: DBServer/DBName, username, password
-			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", "root", "");
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/payment", "root", "");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -34,8 +34,8 @@ public class Payment {
 				return "Error while connecting to the database for inserting.";
 			}
 			// create a prepared statement
-			String query = " insert into paymenttb (`InvoiceID`,`InvoiceType`,`CusID`,`ProductID`,`GBFee`,`ServiceCharge`,`OtherCharge`,`VAT`,`TotalPayment`)"
-					+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String query = " insert into paymenttb(`InvoiceID`,`InvoiceType`,`CusID`,`ProductID`,`ProductName`,`GBFee`,`ServiceCharge`,`OtherCharge`,`VAT`,`TotalPayment`)"
+					+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ? )";
 
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 
@@ -45,11 +45,11 @@ public class Payment {
 			preparedStmt.setString(3, cusid);
 			preparedStmt.setString(4, productid);
 			preparedStmt.setString(5, productname);
-			preparedStmt.setDouble(4, Double.parseDouble(gbfee));
-			preparedStmt.setDouble(4, Double.parseDouble(servicecg));
-			preparedStmt.setDouble(4, Double.parseDouble(othercg));
-			preparedStmt.setDouble(4, Double.parseDouble(vat));
-			preparedStmt.setDouble(4, Double.parseDouble(totpay));
+			preparedStmt.setDouble(6, Double.parseDouble(gbfee));
+			preparedStmt.setDouble(7, Double.parseDouble(servicecg));
+			preparedStmt.setDouble(8, Double.parseDouble(othercg));
+			preparedStmt.setDouble(9, Double.parseDouble(vat));
+			preparedStmt.setDouble(10, Double.parseDouble(totpay));
 			// execute the statement
 
 			preparedStmt.execute();
@@ -72,7 +72,7 @@ public class Payment {
 					return "Error while connecting to the database for reading.";
 				}
 				// Prepare the html table to be displayed
-				output = "<table border='1'><tr><th>Invoice ID</th>Invoice Type<th></th>" 
+				output = "<table border='1'><tr><th>Invoice ID</th><th>Invoice Type</th>" 
 						+ "<th>Cus ID</th>" + "<th>Product ID</th>" + "<th>GB Fee</th>" 
 						+ "<th>Service Charge</th>" + "<th>Other Charge</th>" + "<th> VAT</th>" 
 						+ "<th>Item Description</th>" 
@@ -145,14 +145,14 @@ public class Payment {
 
 						preparedStmt.setString(1, type);
 						preparedStmt.setString(2, cusid);
-						preparedStmt.setString(2, productid);
-						preparedStmt.setString(2, productname);
-						preparedStmt.setDouble(3, Double.parseDouble(gbfee));
-						preparedStmt.setDouble(3, Double.parseDouble(servicecg));
-						preparedStmt.setDouble(3, Double.parseDouble(othercg));
-						preparedStmt.setDouble(3, Double.parseDouble(vat));
-						preparedStmt.setDouble(3, Double.parseDouble(totpay));
-						preparedStmt.setInt(5, Integer.parseInt(ID));
+						preparedStmt.setString(3, productid);
+						preparedStmt.setString(4, productname);
+						preparedStmt.setDouble(5, Double.parseDouble(gbfee));
+						preparedStmt.setDouble(6, Double.parseDouble(servicecg));
+						preparedStmt.setDouble(7, Double.parseDouble(othercg));
+						preparedStmt.setDouble(8, Double.parseDouble(vat));
+						preparedStmt.setDouble(9, Double.parseDouble(totpay));
+						preparedStmt.setInt(10, Integer.parseInt(ID));
 						
 						// execute the statement
 						preparedStmt.execute();
