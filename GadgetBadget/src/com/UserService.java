@@ -1,5 +1,3 @@
-
-
 package com;
 
 import javax.ws.rs.*;
@@ -46,11 +44,12 @@ public class UserService
 					 @FormParam("phone") String phone,
 					 @FormParam("password") String password,
 					 @FormParam("typeBuyer_T_F") String typeBuyer,
-					 @FormParam("typeResearcher_T_F") String typeResearcher)
+					 @FormParam("typeResearcher_T_F") String typeResearcher,
+					 @FormParam("typeFundingBodies_T_F") String typeFunder)
 			
 			{
 				//output
-				String output = userObj.insertUser(firstName, lastName, dob, gender, email,address,phone,password,typeBuyer,typeResearcher);
+				String output = userObj.insertUser(firstName, lastName, dob, gender, email,address,phone,password,typeBuyer,typeResearcher,typeFunder);
 				return output;
 			}
 			
@@ -82,8 +81,9 @@ public class UserService
 			 String password  = userObject.get("password").getAsString();
 			 String typeBuyer  = userObject.get("typeBuyer_T_F").getAsString();
 			 String typeResearcher  = userObject.get("typeResearcher_T_F").getAsString();
+			 String typeFunder  = userObject.get("typeFundingBodies_T_F").getAsString();
 			 
-			 String output = userObj.updateUser(uID, firstName, lastName, dob, gender,email,address,phone,password,typeBuyer,typeResearcher);
+			 String output = userObj.updateUser(uID, firstName, lastName, dob, gender,email,address,phone,password,typeBuyer,typeResearcher,typeFunder);
 			 return output;
 			}
 			
@@ -109,4 +109,3 @@ public class UserService
 			}
 				
 }
-
