@@ -75,5 +75,20 @@ public class InnovativeProjectService {
 	 String output = innovetiveObj.updateItem(proj_id, rid, proj_code, proj_name, proj_desc, skills_required, estimate_fund, no_of_funds_made, amount_to_fund);
 	return output;
 	}
+	
+	@DELETE
+	@Path("/")
+	@Consumes(MediaType.APPLICATION_XML)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String deleteItem(String projData)
+	{
+	//Convert the input string to an XML document
+	 Document doc = Jsoup.parse(projData, "", Parser.xmlParser());
+
+	//Read the value from the element <itemID>
+	 String proj_id = doc.select("proj_id").text();
+	 String output = innovetiveObj.deleteItem(proj_id);
+	return output;
+	}
 
 }
