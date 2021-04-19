@@ -40,6 +40,7 @@ public class InnovativeProjectService {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String insertItem(
+			@FormParam("rid") String rid,
 			@FormParam("proj_code") String proj_code,
 			@FormParam("proj_name") String proj_name,
 			@FormParam("proj_desc") String proj_desc,
@@ -48,8 +49,31 @@ public class InnovativeProjectService {
 			@FormParam("no_of_funds_made") String no_of_funds_made,
 			@FormParam("amount_to_fund") String amount_to_fund)
 	{
-	 String output = innovetiveObj.insertItem(proj_code,proj_name,proj_desc,skills_required,estimate_fund,no_of_funds_made,amount_to_fund);
+	 String output = innovetiveObj.insertItem(rid,proj_code,proj_name,proj_desc,skills_required,estimate_fund,no_of_funds_made,amount_to_fund);
 	 return output;
+	}
+	
+	@PUT
+	@Path("/")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String updateItem(String projData)
+	{
+	//Convert the input string to a JSON object
+	 JsonObject projObject = new JsonParser().parse(projData).getAsJsonObject();
+	//Read the values from the JSON object
+	 String proj_id = projObject.get("proj_id").getAsString();
+	 String rid = projObject.get("rid").getAsString();
+	 String proj_code = projObject.get("proj_code").getAsString();
+	 String proj_name = projObject.get("proj_name").getAsString();
+	 String proj_desc = projObject.get("proj_desc").getAsString();
+	 String skills_required = projObject.get("skills_required").getAsString();
+	 String estimate_fund = projObject.get("estimate_fund").getAsString();
+	 String no_of_funds_made = projObject.get("no_of_funds_made").getAsString();
+	 String amount_to_fund = projObject.get("amount_to_fund").getAsString();
+	 
+	 String output = innovetiveObj.updateItem(proj_id, rid, proj_code, proj_name, proj_desc, skills_required, estimate_fund, no_of_funds_made, amount_to_fund);
+	return output;
 	}
 
 }
