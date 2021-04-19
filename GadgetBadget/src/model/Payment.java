@@ -164,6 +164,35 @@ public class Payment {
 					}
 					return output;
 				}		
+				
+				//delete payments
+				public String deletePayment(String InvoiceID) {
+					String output = "";
+					try {
+						Connection con = connect();
+						if (con == null) {
+							return "Error while connecting to the database for deleting.";
+						}
+
+						// create a prepared statement
+
+						String query = "delete from paymenttb where InvoiceID=?";
+						PreparedStatement preparedStmt = con.prepareStatement(query);
+						// binding values
+
+						preparedStmt.setInt(1, Integer.parseInt(InvoiceID));
+
+						// execute the statement
+
+						preparedStmt.execute();
+						con.close();
+						output = "Deleted successfully";
+					} catch (Exception e) {
+						output = "Error while deleting the payment.";
+						System.err.println(e.getMessage());
+					}
+					return output;
+				}
 		
 		
 }
