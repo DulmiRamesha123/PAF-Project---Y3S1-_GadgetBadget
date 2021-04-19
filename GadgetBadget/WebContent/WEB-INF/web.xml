@@ -16,6 +16,8 @@ id="WebApp_ID" version="4.0">
  <url-pattern>/Service/*</url-pattern>
 </servlet-mapping>
 
+
+
 <servlet>
  		<servlet-name>Jersey Web Application1</servlet-name>
  		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
