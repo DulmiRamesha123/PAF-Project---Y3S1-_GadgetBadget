@@ -34,20 +34,26 @@ public class CompleteProjectService {
 		return completeProjectObj.readItems();
 	}
 	
+	//input details 
+	
 	@POST
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String insertItem(@FormParam("proj_code") String proj_code,
+	public String insertItem(
+			@FormParam("rid") String rid,
+			@FormParam("proj_code") String proj_code,
 			@FormParam("proj_name") String proj_name,
 			@FormParam("proj_desc") String proj_desc,
 			@FormParam("skills_required") String skills_required,
 			@FormParam("payment_method") String payment_method,
 			@FormParam("estimate_budget") String estimate_budget)
 	{
-	 String output = completeProjectObj.insertItem(proj_code,proj_name,proj_desc,skills_required,payment_method,estimate_budget);
+	 String output = completeProjectObj.insertItem(rid,proj_code,proj_name,proj_desc,skills_required,payment_method,estimate_budget);
 	 return output;
 	}
+	
+	//update part
 	
 	@PUT
 	@Path("/")
@@ -59,6 +65,7 @@ public class CompleteProjectService {
 	 JsonObject projObject = new JsonParser().parse(projData).getAsJsonObject();
 	//Read the values from the JSON object
 	 String proj_id = projObject.get("proj_id").getAsString();
+	 String rid = projObject.get("rid").getAsString();
 	 String proj_code = projObject.get("proj_code").getAsString();
 	 String proj_name = projObject.get("proj_name").getAsString();
 	 String proj_desc = projObject.get("proj_desc").getAsString();
@@ -66,7 +73,7 @@ public class CompleteProjectService {
 	 String payment_method = projObject.get("payment_method").getAsString();
 	 String estimate_budget = projObject.get("estimate_budget").getAsString();
 	 
-	 String output = completeProjectObj.updateItem(proj_id, proj_code, proj_name, proj_desc, skills_required, payment_method, estimate_budget);
+	 String output = completeProjectObj.updateItem(proj_id, rid, proj_code, proj_name, proj_desc, skills_required, payment_method, estimate_budget);
 	return output;
 	}
 	
