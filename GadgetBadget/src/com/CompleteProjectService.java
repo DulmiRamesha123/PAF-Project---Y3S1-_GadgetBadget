@@ -34,6 +34,8 @@ public class CompleteProjectService {
 		return completeProjectObj.readItems();
 	}
 	
+	//input details 
+	
 	@POST
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
