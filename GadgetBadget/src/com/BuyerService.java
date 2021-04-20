@@ -35,4 +35,11 @@ public class BuyerService
      System.out.println(BuyerName);
      return output;
    }
+   @GET
+   @Path("/") 
+   @Produces(MediaType.TEXT_HTML) 
+    public String readBuyer()
+    { 
+       return BuyerObj.readBuyer(); 
+    }
 }

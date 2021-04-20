@@ -57,7 +57,7 @@ public class Buyer {
 	   return output; 
 	} 
 
-	   public String readBuyer() 
+	public String readBuyer() 
 	{ 
 	   String output = ""; 
 	try
