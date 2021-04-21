@@ -27,7 +27,7 @@ public class CompleteProject {
 		 return con;
 		 }
 		
-		public String insertItem(String code, String name, String desc, String skills, String pay_method, String budget)
+		public String insertItem(String rid, String code, String name, String desc, String skills, String pay_method, String budget)
 		 {
 			String output = "";
 			try
@@ -37,19 +37,20 @@ public class CompleteProject {
 				{return "Error while connecting to the database for inserting."; }
 				
 				// create a prepared statement
-				String query = " insert into complete_project(`proj_id`,`proj_code`,`proj_name`,`proj_desc`,`skills_required`,`payment_method`,`estimate_budget`)"
+				String query = " insert into complete_project(`proj_id`,`rid`,`proj_code`,`proj_name`,`proj_desc`,`skills_required`,`payment_method`,`estimate_budget`)"
 				 + " values (?, ?, ?, ?, ?, ?, ?)";
 		 
 				PreparedStatement preparedStmt = con.prepareStatement(query);
 		 
 				// binding values
 				preparedStmt.setInt(1, 0);
-				preparedStmt.setString(2, code);
-				preparedStmt.setString(3, name);
-				preparedStmt.setString(4, desc);
-				preparedStmt.setString(5, skills);
-				preparedStmt.setString(6, pay_method);
-				preparedStmt.setDouble(7, Double.parseDouble(budget));
+				preparedStmt.setString(2, rid);
+				preparedStmt.setString(3, code);
+				preparedStmt.setString(4, name);
+				preparedStmt.setString(5, desc);
+				preparedStmt.setString(6, skills);
+				preparedStmt.setString(7, pay_method);
+				preparedStmt.setDouble(8, Double.parseDouble(budget));
 				
 				// execute the statement
 
@@ -74,7 +75,7 @@ public class CompleteProject {
 		 if (con == null)
 		 {return "Error while connecting to the database for reading."; }
 		 // Prepare the html table to be displayed
-		 output = "<table border='1'><tr><th>Project Code</th><th>Project Name</th>" +
+		 output = "<table border='1'><tr><th>Project Code</th><th>Researcher Code</th><th>Project Name</th>" +
 		 "<th>Project Description</th>" +
 		 "<th> Skills Required</th>" +
 		 "<th>Payment Method</th>" +
@@ -88,6 +89,7 @@ public class CompleteProject {
 		 while (rs.next())
 		 {
 		 String proj_id = Integer.toString(rs.getInt("proj_id"));
+		 String rid = rs.getString("rid");
 		 String proj_code = rs.getString("proj_code");
 		 String proj_name = rs.getString("proj_name");
 		 String proj_desc = rs.getString("proj_desc");
@@ -96,6 +98,7 @@ public class CompleteProject {
 		 String estimate_budget = Double.toString(rs.getDouble("estimate_budget"));
 		
 		 // Add into the html table
+		 output += "<tr><td>" + rid + "</td>";
 		 output += "<tr><td>" + proj_code + "</td>";
 		 output += "<td>" + proj_name + "</td>";
 		 output += "<td>" + proj_desc + "</td>";
@@ -122,7 +125,7 @@ public class CompleteProject {
 		 return output;
 		 }
 		
-		public String updateItem(String ID, String code, String name, String desc, String skills, String pay_method, String budget)
+		public String updateItem(String ID, String rid, String code, String name, String desc, String skills, String pay_method, String budget)
 
 		 {
 		 String output = "";
@@ -132,16 +135,17 @@ public class CompleteProject {
 		 if (con == null)
 		 {return "Error while connecting to the database for updating."; }
 		 // create a prepared statement
-		 String query = "UPDATE complete_project SET proj_code=?,proj_name=?,proj_desc=?,skills_required=?,payment_method=?,estimate_budget=?WHERE proj_id=?";
+		 String query = "UPDATE complete_project SET rid=?,proj_code=?,proj_name=?,proj_desc=?,skills_required=?,payment_method=?,estimate_budget=?WHERE proj_id=?";
 		 PreparedStatement preparedStmt = con.prepareStatement(query);
 		 // binding values
-		 preparedStmt.setString(1, code);
-		 preparedStmt.setString(2, name);
-		 preparedStmt.setString(3, desc);
-		 preparedStmt.setString(4, skills);
-		 preparedStmt.setString(5, pay_method);
-		 preparedStmt.setDouble(6, Double.parseDouble(budget));
-		 preparedStmt.setInt(7, Integer.parseInt(ID));
+		 preparedStmt.setString(1, rid);
+		 preparedStmt.setString(2, code);
+		 preparedStmt.setString(3, name);
+		 preparedStmt.setString(4, desc);
+		 preparedStmt.setString(5, skills);
+		 preparedStmt.setString(6, pay_method);
+		 preparedStmt.setDouble(7, Double.parseDouble(budget));
+		 preparedStmt.setInt(8, Integer.parseInt(ID));
 		 // execute the statement
 		 preparedStmt.execute();
 		 con.close();
