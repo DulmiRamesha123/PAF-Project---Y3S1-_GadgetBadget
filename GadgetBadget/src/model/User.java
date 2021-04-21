@@ -137,7 +137,8 @@ public class User {
 					 			 }
 				 
 				 
-				String query = " insert into user(`uID`,`userCode`,`firstName`,`lastName`,`dob`,`gender_M_F`,`email`,`address`,`phone`,`password`,`typeBuyer_T_F`,`typeResearcher_T_F`,`typeFundingBodies_T_F`) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				String query = " insert into user(`uID`,`userCode`,`firstName`,`lastName`,`dob`,`gender_M_F`,`email`,`address`,`phone`,"
+						+ "`password`,`typeBuyer_T_F`,`typeResearcher_T_F`,`typeFundingBodies_T_F`) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			    PreparedStatement preparedStmt = con.prepareStatement(query);
 					  
 			    // binding values
