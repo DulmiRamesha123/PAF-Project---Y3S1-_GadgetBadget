@@ -104,4 +104,44 @@ public class Buyer {
 	 } 
 	   return output; 
 	 } 
+	
+	public String updateBuyer(String ID, String code, String name, String email, int contactNum, String address)
+	   { 
+	    String output = ""; 
+	    try
+	  { 
+	  Connection con = connect(); 
+	  if (con == null) 
+	 {
+		return "Error while connecting to the database for updating."; 
+		} 
+	//create a prepared statement
+	   String query = "UPDATE Buyer SET Buyer Code=?,Buyer Name=?,Buyer Email=?,Buyer Contact Number=?,Buyer Address=? WHERE Buyer ID=?"; 
+	   PreparedStatement preparedStmt = con.prepareStatement(query); 
+	//binding values
+	   preparedStmt.setString(1, code); 
+	   preparedStmt.setString(2, name);
+	   preparedStmt.setString(3, email); 
+	   preparedStmt.setInt(4,contactNum); 
+	   preparedStmt.setString(5, address); 
+	   preparedStmt.setInt(6, Integer.parseInt(ID)); 
+
+	   System.out.println(code);
+	   System.out.println(name);
+	   
+	   
+	   // execute the statement
+	   preparedStmt.execute(); 
+	   con.close(); 
+	   output = "Updated Successfully"; 
+	   } 
+	   catch (Exception e) 
+	   { 
+	   output = "Error while updating the Buyer.";
+	   e.printStackTrace();
+	   //System.err.println(e.getMessage()); 
+	   } 
+	   return output; 
+	   } 
+	   
 }
