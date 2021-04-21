@@ -13,7 +13,7 @@ id="WebApp_ID" version="4.0">
 </servlet>
 <servlet-mapping>
  <servlet-name>Jersey Web Application</servlet-name>
- <url-pattern>/Service/*</url-pattern>
+ <url-pattern>/FundProposalService/*</url-pattern>
 </servlet-mapping>
 
 
