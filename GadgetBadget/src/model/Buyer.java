@@ -16,7 +16,7 @@ public class Buyer {
    {e.printStackTrace();} 
     return con; 
    } 
-	 public String insertBuyer(String code, String name, String email, Integer buyerContactNumber, String address) 
+	public String insertBuyer(String code, String name, String email, int contactNumber, String address) 
 	   { 
 	     String output = ""; 
 	     try
@@ -32,19 +32,21 @@ public class Buyer {
 	     String query = " insert into Buyer (`Buyer ID`,`Buyer Code`,`Buyer Name`,`Buyer Email`,`Buyer Contact Number`,`Buyer Address`)"+ " values (?, ?, ?, ?, ?, ?)"; 
 	     PreparedStatement preparedStmt = con.prepareStatement(query); 
 	     
+	    
 	    // binding values
 	    preparedStmt.setInt(1, 0); 
 	    preparedStmt.setString(2, code); 
 	    preparedStmt.setString(3, name); 
 	    preparedStmt.setString(4, email); 
-	    preparedStmt.setInt(5, buyerContactNumber); 
+	    preparedStmt.setInt(5,contactNumber); 
 	    preparedStmt.setString(6,address);
 	    
 	    System.out.println(code);
 	    System.out.println(name);
-	    
+	    System.out.println("2");
 	   // execute the statement3
 	   preparedStmt.execute(); 
+	   System.out.println("3");
 	   con.close(); 
 	   output = "Inserted successfully"; 
 	   } 
@@ -56,7 +58,7 @@ public class Buyer {
 	   } 
 	   return output; 
 	} 
-
+	   
 	public String readBuyer() 
 	{ 
 	   String output = ""; 
@@ -105,7 +107,7 @@ public class Buyer {
 	   return output; 
 	 } 
 	
-	public String updateBuyer(String ID, String code, String name, String email, int contactNum, String address)
+	 public String updateBuyer(int ID, String code, String name, String email, int contactNum, String address)
 	   { 
 	    String output = ""; 
 	    try
@@ -114,24 +116,35 @@ public class Buyer {
 	  if (con == null) 
 	 {
 		return "Error while connecting to the database for updating."; 
+		
 		} 
+	  
+	  
 	//create a prepared statement
-	   String query = "UPDATE Buyer SET Buyer Code=?,Buyer Name=?,Buyer Email=?,Buyer Contact Number=?,Buyer Address=? WHERE Buyer ID=?"; 
+	   String query = "UPDATE Buyer SET `Buyer Code`=?,`Buyer Name`=?,`Buyer Email`=?,`Buyer Contact Number`=?,`Buyer Address`=? WHERE `Buyer ID`=?"; 
 	   PreparedStatement preparedStmt = con.prepareStatement(query); 
+	   
+	   
 	//binding values
 	   preparedStmt.setString(1, code); 
 	   preparedStmt.setString(2, name);
 	   preparedStmt.setString(3, email); 
 	   preparedStmt.setInt(4,contactNum); 
 	   preparedStmt.setString(5, address); 
-	   preparedStmt.setInt(6, Integer.parseInt(ID)); 
-
+	   preparedStmt.setInt(6, ID); 
+	   
 	   System.out.println(code);
 	   System.out.println(name);
+	   System.out.println(email);
+	   System.out.println(contactNum);
+	   System.out.println(address);
+	   System.out.println(ID);
 	   
 	   
+	  
 	   // execute the statement
 	   preparedStmt.execute(); 
+
 	   con.close(); 
 	   output = "Updated Successfully"; 
 	   } 
@@ -143,7 +156,8 @@ public class Buyer {
 	   } 
 	   return output; 
 	   } 
-	 public String deleteBuyer(String BuyerID) 
+	 
+	   public String deleteBuyer(String BuyerID) 
 	   { 
 	        String output = ""; 
 	      try
@@ -153,21 +167,31 @@ public class Buyer {
 	       {
 		       return "Error while connecting to the database for deleting."; 
 	        } 
-
+	         System.out.println("down");
 	    // create a prepared statement
-	       String query = "delete from Buyer where Buyer ID=?"; 
+	       String query = "delete from Buyer where `Buyer ID`=?"; 
 	       PreparedStatement preparedStmt = con.prepareStatement(query); 
+	       
+	       int buyerID=Integer.parseInt(BuyerID);
+	      
+
 	    // binding values
-	       preparedStmt.setInt(1, Integer.parseInt(BuyerID)); 
+	       preparedStmt.setInt(1,buyerID); 
+	       
+	      
 	    // execute the statement
 	       preparedStmt.execute(); 
+	       
+	       
 	       con.close(); 
 	        output = "Deleted successfully"; 
 	        } 
 	       catch (Exception e) 
+	      
 	   { 
 	       output = "Error while deleting the Buyer.";
-	       System.err.println(e.getMessage());
+	       e.printStackTrace();
+	       //System.err.println(e.getMessage());
 	  } 
 	   return output;
 	}
