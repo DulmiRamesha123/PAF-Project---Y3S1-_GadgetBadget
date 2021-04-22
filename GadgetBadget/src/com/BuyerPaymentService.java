@@ -54,5 +54,43 @@ public class BuyerPaymentService {
 	return output;
 	}
 	
+	@PUT
+	@Path("/")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String updatePayment(String paymentData)
+	{
+	//Convert the input string to a JSON object
+	 JsonObject paymentObject = new JsonParser().parse(paymentData).getAsJsonObject();
+	//Read the values from the JSON object
+	 String InvoiceID = paymentObject.get("InvoiceID").getAsString();
+	 
+	 String CusID = paymentObject.get("CusID").getAsString();
+	 String ProductID = paymentObject.get("ProductID").getAsString();
+	 String ProductName = paymentObject.get("ProductName").getAsString();
+	 
+	 String ServiceCharge = paymentObject.get("ServiceCharge").getAsString();
+	 String Quantity = paymentObject.get("Quantity").getAsString();
+	
+	 String TotalPayment = paymentObject.get("TotalPayment").getAsString();
+	 
+	 String output = paymentObj.updatePayment(InvoiceID, CusID, ProductID, ProductName, ServiceCharge, Quantity, TotalPayment);
+	return output;
+	}
+	
+	@DELETE
+	@Path("/")
+	@Consumes(MediaType.APPLICATION_XML)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String deletePayment(String paymentData)
+	{
+	//Convert the input string to an XML document
+	 Document doc = Jsoup.parse(paymentData, "", Parser.xmlParser());
+
+	//Read the value from the element <itemID>
+	 String InvoiceID = doc.select("InvoiceID").text();
+	 String output = paymentObj.deletePayment(InvoiceID);
+	return output;
+	}
 
 }
