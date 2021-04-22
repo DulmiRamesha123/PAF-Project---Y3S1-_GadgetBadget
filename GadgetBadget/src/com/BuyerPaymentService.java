@@ -22,8 +22,18 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;  
 
 
-
+@Path("/BuyerPayments")
 public class BuyerPaymentService {
+	
+	BuyerPayment paymentObj = new BuyerPayment();
+	@GET
+	@Path("/")
+	@Produces(MediaType.TEXT_HTML)
+	public String readPayment()
+	{
+			
+			return paymentObj.readPayment();
+	}
 	
 	
 
