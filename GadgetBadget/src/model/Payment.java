@@ -75,7 +75,7 @@ public class Payment {
 				output = "<table border='1'><tr><th>Invoice ID</th><th>Invoice Type</th>" 
 						+ "<th>Cus ID</th>" + "<th>Product ID</th>" + "<th>GB Fee</th>" 
 						+ "<th>Service Charge</th>" + "<th>Other Charge</th>" + "<th> VAT</th>" 
-						+ "<th>Item Description</th>" 
+						+ "<th>TOTAL PAYMENT</th>" 
 						+ "<th>Update</th><th>Remove</th></tr>";
 
 				String query = "select * from paymenttb";
@@ -94,6 +94,7 @@ public class Payment {
 					String VAT = Double.toString(rs.getDouble("VAT"));
 					String TotalPayment = Double.toString(rs.getDouble("TotalPayment"));
 					
+					//"TotalPayment"+
 					// Add into the html table
 					
 					output += "<tr><td>" + InvoiceType + "</td>";
