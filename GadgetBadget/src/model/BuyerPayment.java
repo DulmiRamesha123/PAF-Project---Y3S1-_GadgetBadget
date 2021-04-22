@@ -59,6 +59,66 @@ public class BuyerPayment {
 				}
 				return output;
 			}
+			//readpayments
+			
+			public String readPayment() {
+				String output = "";
+				try {
+					Connection con = connect();
+					if (con == null) {
+						return "Error while connecting to the database for reading.";
+					}
+					// Prepare the html table to be displayed
+					output = "<table border='1'><tr><th>Cus ID</th><th>Product ID</th>" 
+							+ "<th>Product Name</th>" + "<th>Service Charge</th>" 
+							+ "<th>Quentity</th>" 
+							+ "<th>TOTAL PAYMENT</th>" 
+							+ "<th>Update</th><th>Remove</th></tr>";
+
+					String query = "select * from bpaymenttb";
+					Statement stmt = con.createStatement();
+					ResultSet rs = stmt.executeQuery(query);
+					// iterate through the rows in the result set
+					while (rs.next()) {
+						String InvoiceID = Integer.toString(rs.getInt("InvoiceID"));
+						
+						String CusID = rs.getString("CusID");
+						String ProductID = rs.getString("ProductID");
+						String ProductName = rs.getString("ProductName");
+						
+						String ServiceCharge = Double.toString(rs.getDouble("ServiceCharge"));
+						String Quantity = Double.toString(rs.getDouble("Quantity"));
+						
+						String TotalPayment = Double.toString(rs.getDouble("TotalPayment"));
+						
+						//"TotalPayment"+
+						// Add into the html table
+						
+						
+						output += "<td>" + CusID   + "</td>";
+						output += "<td>" + ProductID + "</td>";
+						output += "<td>" + ProductName + "</td>";
+						
+						output += "<td>" + ServiceCharge + "</td>";
+						output += "<td>" + Quantity + "</td>";
+						
+						output += "<td>" + TotalPayment + "</td>";
+						// buttons
+						output += "<td><input name='btnUpdate' type='button' value='Update'class='btn btn-secondary'></td>"
+								+ "<td><form method='post' action='payments.jsp'>"
+								+ "<input name='btnRemove' type='submit' value='Remove'class='btn btn-danger'>"
+								+ "<input name='InvoiceID' type='hidden' value='" + InvoiceID + "'>" + "</form></td></tr>";
+					}
+					con.close();
+					// Complete the html table
+					output += "</table>";
+				} catch (Exception e) {
+					output = "Error while reading the payments.";
+					System.err.println(e.getMessage());
+				}
+				return output;
+			}
+			
 	
 	
 
