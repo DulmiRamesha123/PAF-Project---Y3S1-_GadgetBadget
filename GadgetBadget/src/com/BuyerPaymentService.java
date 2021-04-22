@@ -35,6 +35,24 @@ public class BuyerPaymentService {
 			return paymentObj.readPayment();
 	}
 	
+	@POST
+	@Path("/")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String insertPayment(
+	 
+	 @FormParam("CusID") String CusID,
+	 @FormParam("ProductID") String ProductID,
+	 @FormParam("ProductName") String ProductName,
+	
+	 @FormParam("ServiceCharge") String ServiceCharge,
+	 @FormParam("Quantity") String Quantity,
+	 
+	 @FormParam("TotalPayment") String TotalPayment)
+	{
+	 String output = paymentObj.insertPayment(CusID, ProductID, ProductName,ServiceCharge,Quantity,TotalPayment);
+	return output;
+	}
 	
 
 }
