@@ -119,6 +119,50 @@ public class BuyerPayment {
 				return output;
 			}
 			
+			//updatepayments
+
+			public String updatePayment(String ID, String cusid, String productid, String productname , String servicecg , String quantity ,String totpay)
+
+			{
+				String output = "";
+				try {
+					Connection con = connect();
+
+					if (con == null)
+
+					{
+						return "Error while connecting to the database for updating.";
+					}
+
+					// create a prepared statement
+
+					String query = "UPDATE bpaymenttb SET CusID=?,ProductID=?,ProductName=?,ServiceCharge=?,Quantity=?,TotalPayment=? WHERE InvoiceID=?";
+
+					PreparedStatement preparedStmt = con.prepareStatement(query);
+					// binding values
+
+					
+					preparedStmt.setString(1, cusid);
+					preparedStmt.setString(2, productid);
+					preparedStmt.setString(3, productname);
+					
+					preparedStmt.setDouble(4, Double.parseDouble(servicecg));
+					preparedStmt.setDouble(5, Double.parseDouble(quantity));
+					
+					preparedStmt.setDouble(6, Double.parseDouble(totpay));
+					preparedStmt.setInt(7, Integer.parseInt(ID));
+					
+					// execute the statement
+					preparedStmt.execute();
+					con.close();
+					output = "Updated successfully";
+				} catch (Exception e) {
+					output = "Error while updating the payments.";
+					System.err.println(e.getMessage());
+				}
+				return output;
+			}
+			
 	
 	
 
