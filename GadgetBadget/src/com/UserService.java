@@ -1,14 +1,23 @@
-
-
 package com;
-
-import javax.ws.rs.*;
+import javax.ws.rs.Path;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.POST;
+import javax.ws.rs.GET;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import com.google.gson.*;
-import model.User;
-import org.jsoup.*;
-import org.jsoup.parser.*;
+
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.parser.Parser;
+
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+ 
+import model.User;
+ 
 
 @Path("/Users")
 
@@ -36,7 +45,7 @@ public class UserService
 			//insert user
 			
 			public String insertUser(
-					
+					 @FormParam("userCode") String userCode,
 					 @FormParam("firstName") String firstName,
 					 @FormParam("lastName") String lastName,
 					 @FormParam("dob") String dob,
@@ -46,11 +55,12 @@ public class UserService
 					 @FormParam("phone") String phone,
 					 @FormParam("password") String password,
 					 @FormParam("typeBuyer_T_F") String typeBuyer,
-					 @FormParam("typeResearcher_T_F") String typeResearcher)
+					 @FormParam("typeResearcher_T_F") String typeResearcher,
+					 @FormParam("typeFundingBodies_T_F") String typeFunder)
 			
 			{
 				//output
-				String output = userObj.insertUser(firstName, lastName, dob, gender, email,address,phone,password,typeBuyer,typeResearcher);
+				String output = userObj.insertUser(userCode,firstName, lastName, dob, gender, email,address,phone,password,typeBuyer,typeResearcher,typeFunder);
 				return output;
 			}
 			
@@ -72,6 +82,7 @@ public class UserService
 			//Read the values from the JSON object
 			 
 			 String uID = userObject.get("uID").getAsString();
+			 String uCode = userObject.get("userCode").getAsString();
 			 String firstName = userObject.get("firstName").getAsString();
 			 String lastName = userObject.get("lastName").getAsString();
 			 String dob = userObject.get("dob").getAsString();
@@ -82,8 +93,9 @@ public class UserService
 			 String password  = userObject.get("password").getAsString();
 			 String typeBuyer  = userObject.get("typeBuyer_T_F").getAsString();
 			 String typeResearcher  = userObject.get("typeResearcher_T_F").getAsString();
+			 String typeFunder  = userObject.get("typeFundingBodies_T_F").getAsString();
 			 
-			 String output = userObj.updateUser(uID, firstName, lastName, dob, gender,email,address,phone,password,typeBuyer,typeResearcher);
+			 String output = userObj.updateUser(uID,uCode, firstName, lastName, dob, gender,email,address,phone,password,typeBuyer,typeResearcher,typeFunder);
 			 return output;
 			}
 			
@@ -109,4 +121,3 @@ public class UserService
 			}
 				
 }
-

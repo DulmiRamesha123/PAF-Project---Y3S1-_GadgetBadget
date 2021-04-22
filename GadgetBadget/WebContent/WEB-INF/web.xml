@@ -13,8 +13,10 @@ id="WebApp_ID" version="4.0">
 </servlet>
 <servlet-mapping>
  <servlet-name>Jersey Web Application</servlet-name>
- <url-pattern>/Service/*</url-pattern>
+ <url-pattern>/FundProposalService/*</url-pattern>
 </servlet-mapping>
+
+
 
 <servlet>
  		<servlet-name>Jersey Web Application1</servlet-name>
@@ -36,5 +38,13 @@ id="WebApp_ID" version="4.0">
  		<url-pattern>/InnovativeProjectService/*</url-pattern>
   </servlet-mapping>
   
-
+<servlet>
+ 		<servlet-name>Jersey Web Application3</servlet-name>
+ 		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+ 		<load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+ 		<servlet-name>Jersey Web Application</servlet-name>
+ 		<url-pattern>/BuyerService/*</url-pattern>
+  </servlet-mapping>
 </web-app>
