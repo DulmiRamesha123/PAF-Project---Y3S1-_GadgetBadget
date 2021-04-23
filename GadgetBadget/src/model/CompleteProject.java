@@ -11,7 +11,7 @@ import java.sql.Statement;
 
 public class CompleteProject {
 	
-	//A common method to connect to the DB
+	//Method to connect to the DB
 		private Connection connect()
 		 {
 		 Connection con = null;
@@ -20,6 +20,7 @@ public class CompleteProject {
 		 Class.forName("com.mysql.jdbc.Driver");
 
 		 //Provide the correct details: DBServer/DBName, username, password
+		 
 		 con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/researcher", "root", "");
 		 }                              
 		 catch (Exception e)
@@ -27,22 +28,27 @@ public class CompleteProject {
 		 return con;
 		 }
 		
-		public String insertItem(String rid, String code, String name, String desc, String skills, String pay_method, String budget)
+		public String insertCompleteProjects(String rid, String code, String name, String desc, String skills, String pay_method, String budget)
 		 {
 			String output = "";
 			try
 			{
 				Connection con = connect();
 				if (con == null)
-				{return "Error while connecting to the database for inserting."; }
+				{
+					return "Error while connecting to the database for inserting."; //if the connection is not correct
+				}
 				
 				// create a prepared statement
+				
 				String query = " insert into complete_project(`proj_id`,`rid`,`proj_code`,`proj_name`,`proj_desc`,`skills_required`,`payment_method`,`estimate_budget`)"
+						+ " values (?,?, ?, ?, ?, ?, ?, ?)";
 
 		 
 				PreparedStatement preparedStmt = con.prepareStatement(query);
 		 
 				// binding values
+				
 				preparedStmt.setInt(1, 0);
 				preparedStmt.setString(2, rid);
 				preparedStmt.setString(3, code);
@@ -60,22 +66,28 @@ public class CompleteProject {
 			}
 			catch (Exception e)
 			{
-				output = "Error while inserting the item.";
+				output = "Error while inserting the complete project."; // if there is an issue in insert code
 				System.err.println(e.getMessage());
 			}
 		 return output;
 		 }
 		
-		public String readItems()
+		public String readCompleteProjects()
 		 {
 		 String output = "";
 		 try
 		 {
 		 Connection con = connect();
 		 if (con == null)
-		 {return "Error while connecting to the database for reading."; }
+		 {
+			 return "Error while connecting to the database for reading."; //if the connection is not correct
+		 }
+		 
 		 // Prepare the html table to be displayed
 
+		 
+		 output = "<table border='1'><tr><th>Project Code</th><th>Researcher Code</th>" +
+		 "<th>Project Name</th>" +
 		 "<th>Project Description</th>" +
 		 "<th> Skills Required</th>" +
 		 "<th>Payment Method</th>" +
@@ -83,9 +95,12 @@ public class CompleteProject {
 		 "<th>Update</th><th>Remove</th></tr>";
 
 		 String query = "select * from complete_project";
+		 
 		 Statement stmt = con.createStatement();
 		 ResultSet rs = stmt.executeQuery(query);
+		 
 		 // iterate through the rows in the result set
+		 
 		 while (rs.next())
 		 {
 		 String proj_id = Integer.toString(rs.getInt("proj_id"));
@@ -115,18 +130,20 @@ public class CompleteProject {
 		 + "'>" + "</form></td></tr>";
 		 }
 		 con.close();
+		 
 		 // Complete the html table
+		 
 		 output += "</table>";
 		 }
 		 catch (Exception e)
 		 {
-		 output = "Error while reading the items.";
+		 output = "Error while reading the complete projects."; //if an issue in reading part
 		 System.err.println(e.getMessage());
 		 }
 		 return output;
 		 }
 		
-		public String updateItem(String ID, String rid, String code, String name, String desc, String skills, String pay_method, String budget)
+		public String updateCompleteProjects(String ID, String rid, String code, String name, String desc, String skills, String pay_method, String budget)
 
 		 {
 		 String output = "";
@@ -134,11 +151,17 @@ public class CompleteProject {
 		 {
 		 Connection con = connect();
 		 if (con == null)
-		 {return "Error while connecting to the database for updating."; }
+		 {
+			 return "Error while connecting to the database for updating."; // if there is a connection issue
+		 }
 		 // create a prepared statement
+		 
 		 String query = "UPDATE complete_project SET rid=?,proj_code=?,proj_name=?,proj_desc=?,skills_required=?,payment_method=?,estimate_budget=?WHERE proj_id=?";
+		 
 		 PreparedStatement preparedStmt = con.prepareStatement(query);
+		 
 		 // binding values
+		 
 		 preparedStmt.setString(1, rid);
 		 preparedStmt.setString(2, code);
 		 preparedStmt.setString(3, name);
@@ -147,41 +170,51 @@ public class CompleteProject {
 		 preparedStmt.setString(6, pay_method);
 		 preparedStmt.setDouble(7, Double.parseDouble(budget));
 		 preparedStmt.setInt(8, Integer.parseInt(ID));
+		 
 		 // execute the statement
+		 
 		 preparedStmt.execute();
 		 con.close();
 		 output = "Updated successfully";
 		 }
 		 catch (Exception e)
 		 {
-		 output = "Error while updating the item.";
+		 output = "Error while updating the complete project."; //if there is an issue in updating part
 		 System.err.println(e.getMessage());
 		 }
 		 return output;
 		 }
 	
-		public String deleteItem(String proj_id)
+		public String deleteCompleteProjects(String proj_id)
 		 {
 		 String output = "";
 		 try
 		 {
 		 Connection con = connect();
 		 if (con == null)
-		 {return "Error while connecting to the database for deleting."; }
+		 {
+			 return "Error while connecting to the database for deleting."; //if there is a connection issue
+		  }
 		 // create a prepared statement
+		 
 		 String query = "delete from complete_project where proj_id=?";
+		 
 		 PreparedStatement preparedStmt = con.prepareStatement(query);
+		 
 		 // binding values
+		 
 		 preparedStmt.setInt(1, Integer.parseInt(proj_id));
+		 
 		 // execute the statement
+		 
 		 preparedStmt.execute();
 		 con.close();
 		 output = "Deleted successfully";
 		 }
 		 catch (Exception e)
 		 {
-		 output = "Error while deleting the item.";
-		 System.err.println(e.getMessage());
+		 output = "Error while deleting the complete project."; //if there is an issue in deleting part
+		 System.err.println(e.getMessage()); 
 		 }
 		 return output;
 		 }
