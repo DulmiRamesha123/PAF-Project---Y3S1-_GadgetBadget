@@ -16,6 +16,8 @@ public class Buyer {
    {e.printStackTrace();} 
     return con; 
    } 
+	
+	
 	public String insertBuyer(String code, String name, String email, int contactNumber, String address) 
 	   { 
 	     String output = ""; 
@@ -59,6 +61,7 @@ public class Buyer {
 	   return output; 
 	} 
 	   
+	
 	public String readBuyer() 
 	{ 
 	   String output = ""; 
@@ -106,6 +109,8 @@ public class Buyer {
 	 } 
 	   return output; 
 	 } 
+	
+	
 	
 	 public String updateBuyer(int ID, String code, String name, String email, int contactNum, String address)
 	   { 
@@ -156,6 +161,7 @@ public class Buyer {
 	   } 
 	   return output; 
 	   } 
+	 
 	 
 	   public String deleteBuyer(String BuyerID) 
 	   { 

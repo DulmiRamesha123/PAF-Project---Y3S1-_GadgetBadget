@@ -23,6 +23,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 @Path("/Buyer") 
 
+
 public class BuyerService 
 { 
    Buyer BuyerObj = new Buyer(); 
@@ -50,6 +51,7 @@ public class BuyerService
      return output;
    }
 
+   
 
    @GET
    @Path("/") 
@@ -57,7 +59,7 @@ public class BuyerService
     public String readBuyer()
     { 
        return BuyerObj.readBuyer();
-       //System.out.println("C");
+       
     }
    
    @PUT
@@ -67,11 +69,11 @@ public class BuyerService
    public String updateBuyer(String BuyerData) 
    
    { 
-	   //System.out.println("h");
+	  
    //Convert the input string to a JSON object 
     JsonObject BuyerObject = new JsonParser().parse(BuyerData).getAsJsonObject(); 
     
-    //System.out.println("i");
+    
    //Read the values from the JSON object
     String BuyerID = BuyerObject.get("Buyer ID").getAsString(); 
     String BuyerCode = BuyerObject.get("Buyer Code").getAsString(); 
@@ -81,12 +83,13 @@ public class BuyerService
     String BuyerAddress =BuyerObject.get("Buyer Address").getAsString(); 
     int BuyerContactNum = Integer.parseInt(BuyerContactNumber); 
     int BuyerId=Integer.parseInt(BuyerID);
-   // System.out.println("j");
+ 
     
     
     String output = BuyerObj.updateBuyer(BuyerId,BuyerCode, BuyerName, BuyerEmail,BuyerContactNum,BuyerAddress);
     return output;
    }
+   
    
    @DELETE
    @Path("/") 
