@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
@@ -12,8 +13,10 @@ id="WebApp_ID" version="4.0">
 </servlet>
 <servlet-mapping>
  <servlet-name>Jersey Web Application</servlet-name>
- <url-pattern>/UserService/*</url-pattern>
+ <url-pattern>/BuyerPaymentService/*</url-pattern>
 </servlet-mapping>
+
+
 
 <servlet>
  		<servlet-name>Jersey Web Application1</servlet-name>
@@ -35,5 +38,13 @@ id="WebApp_ID" version="4.0">
  		<url-pattern>/InnovativeProjectService/*</url-pattern>
   </servlet-mapping>
   
-
+<servlet>
+ 		<servlet-name>Jersey Web Application3</servlet-name>
+ 		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+ 		<load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+ 		<servlet-name>Jersey Web Application</servlet-name>
+ 		<url-pattern>/BuyerService/*</url-pattern>
+  </servlet-mapping>
 </web-app>
