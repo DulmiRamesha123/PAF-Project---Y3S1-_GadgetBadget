@@ -34,7 +34,7 @@ public class InnovativeProject {
 					{return "Error while connecting to the database for inserting."; }
 					
 					// create a prepared statement
-					String query = " insert into innovetive_project(`rid`,`proj_id`,`proj_code`,`proj_name`,`proj_desc`,`skills_required`,`estimate_fund`,`no_of_funds_made`,`amount_to_fund`)"
+					String query = " insert into innovetive_project(`proj_id`,`rid`,`proj_code`,`proj_name`,`proj_desc`,`skills_required`,`estimate_fund`,`no_of_funds_made`,`amount_to_fund`)"
 					 + " values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			 
 					PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -48,7 +48,7 @@ public class InnovativeProject {
 					preparedStmt.setString(6, skills);
 					preparedStmt.setDouble(7, Double.parseDouble(budget));
 					preparedStmt.setDouble(8, Integer.parseInt(no_of_funds));
-					preparedStmt.setDouble(9, Double.parseDouble(budget));
+					preparedStmt.setDouble(9, Double.parseDouble(amount));
 					
 					// execute the statement
 
@@ -100,8 +100,8 @@ public class InnovativeProject {
 			 String amount_to_fund = Double.toString(rs.getDouble("amount_to_fund"));
 			
 			 // Add into the html table
-			 output += "<td>" + rid + "</td>";
 			 output += "<tr><td>" + proj_code + "</td>";
+			 output += "<td>" + rid + "</td>";
 			 output += "<td>" + proj_name + "</td>";
 			 output += "<td>" + proj_desc + "</td>";
 			 output += "<td>" + skills_required + "</td>";
