@@ -38,7 +38,7 @@ public class CompleteProject {
 				
 				// create a prepared statement
 				String query = " insert into complete_project(`proj_id`,`rid`,`proj_code`,`proj_name`,`proj_desc`,`skills_required`,`payment_method`,`estimate_budget`)"
-				 + " values (?, ?, ?, ?, ?, ?, ?)";
+
 		 
 				PreparedStatement preparedStmt = con.prepareStatement(query);
 		 
@@ -75,7 +75,7 @@ public class CompleteProject {
 		 if (con == null)
 		 {return "Error while connecting to the database for reading."; }
 		 // Prepare the html table to be displayed
-		 output = "<table border='1'><tr><th>Project Code</th><th>Researcher Code</th><th>Project Name</th>" +
+
 		 "<th>Project Description</th>" +
 		 "<th> Skills Required</th>" +
 		 "<th>Payment Method</th>" +
@@ -98,8 +98,9 @@ public class CompleteProject {
 		 String estimate_budget = Double.toString(rs.getDouble("estimate_budget"));
 		
 		 // Add into the html table
-		 output += "<tr><td>" + rid + "</td>";
+
 		 output += "<tr><td>" + proj_code + "</td>";
+		 output += "<td>" + rid + "</td>";
 		 output += "<td>" + proj_name + "</td>";
 		 output += "<td>" + proj_desc + "</td>";
 		 output += "<td>" + skills_required + "</td>";
