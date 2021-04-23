@@ -28,9 +28,9 @@ public class InnovativeProjectService {
 	@GET
 	@Path("/")
 	@Produces(MediaType.TEXT_HTML)
-	public String readItems()
+	public String readInnovativeProjects()
 	{
-		return innovetiveObj.readItems();
+		return innovetiveObj.readInnovativeProjects();
 	}
 
 	//insert part
@@ -39,7 +39,7 @@ public class InnovativeProjectService {
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String insertItem(
+	public String insertInnovativeProjects(
 			@FormParam("rid") String rid,
 			@FormParam("proj_code") String proj_code,
 			@FormParam("proj_name") String proj_name,
@@ -49,7 +49,7 @@ public class InnovativeProjectService {
 			@FormParam("no_of_funds_made") String no_of_funds_made,
 			@FormParam("amount_to_fund") String amount_to_fund)
 	{
-	 String output = innovetiveObj.insertItem(rid,proj_code,proj_name,proj_desc,skills_required,estimate_fund,no_of_funds_made,amount_to_fund);
+	 String output = innovetiveObj.insertInnovativeProjects(rid,proj_code,proj_name,proj_desc,skills_required,estimate_fund,no_of_funds_made,amount_to_fund);
 	 return output;
 	}
 	
@@ -57,11 +57,14 @@ public class InnovativeProjectService {
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String updateItem(String projData)
+	public String updateInnovativeProjects(String projData)
 	{
 	//Convert the input string to a JSON object
+		
 	 JsonObject projObject = new JsonParser().parse(projData).getAsJsonObject();
+	 
 	//Read the values from the JSON object
+	 
 	 String proj_id = projObject.get("proj_id").getAsString();
 	 String rid = projObject.get("rid").getAsString();
 	 String proj_code = projObject.get("proj_code").getAsString();
@@ -72,7 +75,7 @@ public class InnovativeProjectService {
 	 String no_of_funds_made = projObject.get("no_of_funds_made").getAsString();
 	 String amount_to_fund = projObject.get("amount_to_fund").getAsString();
 	 
-	 String output = innovetiveObj.updateItem(proj_id, rid, proj_code, proj_name, proj_desc, skills_required, estimate_fund, no_of_funds_made, amount_to_fund);
+	 String output = innovetiveObj.updateInnovativeProjects(proj_id, rid, proj_code, proj_name, proj_desc, skills_required, estimate_fund, no_of_funds_made, amount_to_fund);
 	return output;
 	}
 	
@@ -80,14 +83,16 @@ public class InnovativeProjectService {
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_XML)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String deleteItem(String projData)
+	public String deleteInnovativeProjects(String projData)
 	{
 	//Convert the input string to an XML document
+		
 	 Document doc = Jsoup.parse(projData, "", Parser.xmlParser());
 
-	//Read the value from the element <itemID>
+	//Read the value from the element <proj_id>
+	 
 	 String proj_id = doc.select("proj_id").text();
-	 String output = innovetiveObj.deleteItem(proj_id);
+	 String output = innovetiveObj.deleteInnovativeProjects(proj_id);
 	return output;
 	}
 

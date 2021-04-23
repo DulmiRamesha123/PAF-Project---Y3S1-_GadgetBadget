@@ -24,22 +24,26 @@ public class InnovativeProject {
 			 return con;
 			 }
 
-			public String insertItem(String rid, String code, String name, String desc, String skills, String budget,String no_of_funds,String amount)
+			public String insertInnovativeProjects(String rid, String code, String name, String desc, String skills, String budget,String no_of_funds,String amount)
 			 {
 				String output = "";
 				try
 				{
 					Connection con = connect();
 					if (con == null)
-					{return "Error while connecting to the database for inserting."; }
+					{
+						return "Error while connecting to the database for inserting."; // if there is a connection issue
+					}
 					
 					// create a prepared statement
+					
 					String query = " insert into innovetive_project(`proj_id`,`rid`,`proj_code`,`proj_name`,`proj_desc`,`skills_required`,`estimate_fund`,`no_of_funds_made`,`amount_to_fund`)"
 					 + " values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			 
 					PreparedStatement preparedStmt = con.prepareStatement(query);
 			 
 					// binding values
+					
 					preparedStmt.setInt(1, 0);
 					preparedStmt.setString(2, rid);
 					preparedStmt.setString(3, code);
@@ -58,22 +62,26 @@ public class InnovativeProject {
 				}
 				catch (Exception e)
 				{
-					output = "Error while inserting the item.";
+					output = "Error while inserting the innovative projects."; // if there is an issue in the insert part
 					System.err.println(e.getMessage());
 				}
 			 return output;
 			 }
 
 			
-			public String readItems()
+			public String readInnovativeProjects()
 			 {
 			 String output = "";
 			 try
 			 {
 			 Connection con = connect();
 			 if (con == null)
-			 {return "Error while connecting to the database for reading."; }
+			 {
+				 return "Error while connecting to the database for reading."; // if there is a connection issue
+			 }
+			 
 			 // Prepare the html table to be displayed
+			 
 			 output = "<table border='1'><tr><th>Project Code</th><th>Researcher id</th>" +
 			 "<th>Project Name</th>" +
 			 "<th>Project Description</th>" +
@@ -86,7 +94,9 @@ public class InnovativeProject {
 			 String query = "select * from innovetive_project";
 			 Statement stmt = con.createStatement();
 			 ResultSet rs = stmt.executeQuery(query);
+			 
 			 // iterate through the rows in the result set
+			 
 			 while (rs.next())
 			 {
 			 String proj_id = Integer.toString(rs.getInt("proj_id"));
@@ -122,13 +132,13 @@ public class InnovativeProject {
 			 }
 			 catch (Exception e)
 			 {
-			 output = "Error while reading the items.";
+			 output = "Error while reading the innovative projects ."; // if there is an issue in reading part
 			 System.err.println(e.getMessage());
 			 }
 			 return output;
 			 }
 			
-			public String updateItem(String ID, String rid, String code, String name, String desc, String skills, String budget, String no_of_funds, String amount)
+			public String updateInnovativeProjects(String ID, String rid, String code, String name, String desc, String skills, String budget, String no_of_funds, String amount)
 
 			 {
 			 String output = "";
@@ -136,10 +146,15 @@ public class InnovativeProject {
 			 {
 			 Connection con = connect();
 			 if (con == null)
-			 {return "Error while connecting to the database for updating."; }
+			 {
+				 return "Error while connecting to the database for updating."; // if there is a connection issue
+			 }
+			 
 			 // create a prepared statement
+			 
 			 String query = "UPDATE innovetive_project SET rid=?,proj_code=?,proj_name=?,proj_desc=?,skills_required=?,estimate_fund=?,no_of_funds_made=?,amount_to_fund=?WHERE proj_id=?";
 			 PreparedStatement preparedStmt = con.prepareStatement(query);
+			 
 			 // binding values
 			 preparedStmt.setString(1, rid);
 			 preparedStmt.setString(2, code);
@@ -150,6 +165,7 @@ public class InnovativeProject {
 			 preparedStmt.setDouble(7, Integer.parseInt(no_of_funds));
 			 preparedStmt.setDouble(8, Double.parseDouble(amount));
 			 preparedStmt.setInt(9, Integer.parseInt(ID));
+			 
 			 // execute the statement
 			 preparedStmt.execute();
 			 con.close();
@@ -157,33 +173,42 @@ public class InnovativeProject {
 			 }
 			 catch (Exception e)
 			 {
-			 output = "Error while updating the item.";
+			 output = "Error while updating the innovative projects."; // if there is an issue in updating part
 			 System.err.println(e.getMessage());
 			 }
 			 return output;
 			 }
 			
-			public String deleteItem(String proj_id)
+			public String deleteInnovativeProjects(String proj_id)
 			 {
 			 String output = "";
 			 try
 			 {
 			 Connection con = connect();
 			 if (con == null)
-			 {return "Error while connecting to the database for deleting."; }
+			 {
+				 return "Error while connecting to the database for deleting."; // if there is a connection issue
+			 }
 			 // create a prepared statement
+			 
 			 String query = "delete from innovetive_project where proj_id=?";
+			 
 			 PreparedStatement preparedStmt = con.prepareStatement(query);
+			 
 			 // binding values
+			 
 			 preparedStmt.setInt(1, Integer.parseInt(proj_id));
+			 
 			 // execute the statement
+			 
 			 preparedStmt.execute();
 			 con.close();
+			 
 			 output = "Deleted successfully";
 			 }
 			 catch (Exception e)
 			 {
-			 output = "Error while deleting the item.";
+			 output = "Error while deleting the innovative projects."; // if there is an issue in deleting part
 			 System.err.println(e.getMessage());
 			 }
 			 return output;
