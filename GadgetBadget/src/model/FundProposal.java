@@ -24,7 +24,7 @@ public class FundProposal {
 				return con;
 		}
 		
-		// insert funds
+		// insert funds details
 		
 		public String insertfunds(String fundname, String projrequrment, String companyname, String typeofproject,String Excepteddate,String Amountoffunds, String paymentdesc )
 		 {
@@ -36,25 +36,25 @@ public class FundProposal {
 				{return "Error while connecting to the database for inserting.";
 				}
 				// create a prepared statement
-		 String query = " insert into fund_proposal_t(`fundID`,`fundName`,`projRequrment`,`companyName`,`typeOfProject`,`ExceptedDate`,`AmountOfFunds`,`paymentDesc`) "
+				String query = " insert into fund_proposal_t(`fundID`,`fundName`,`projRequrment`,`companyName`,`typeOfProject`,`ExceptedDate`,`AmountOfFunds`,`paymentDesc`) "
 		 		+ "values (?, ?, ?, ?, ?, ?, ?, ?)";
 		 
-		 PreparedStatement preparedStmt = con.prepareStatement(query);
+				PreparedStatement preparedStmt = con.prepareStatement(query);
 		 
-		 // binding values
-		 preparedStmt.setInt(1, 0);
-		 preparedStmt.setString(2, fundname);
-		 preparedStmt.setString(3, projrequrment);
-		 preparedStmt.setString(4, companyname);
-		 preparedStmt.setString(5, typeofproject);
-		 preparedStmt.setString(6, Excepteddate);
-		 preparedStmt.setDouble(7, Double.parseDouble(Amountoffunds));
-		 preparedStmt.setString(8, paymentdesc);
-		// execute the statement
+				// binding values
+				preparedStmt.setInt(1, 0);
+				preparedStmt.setString(2, fundname);
+				preparedStmt.setString(3, projrequrment);
+				preparedStmt.setString(4, companyname);
+				preparedStmt.setString(5, typeofproject);
+				preparedStmt.setString(6, Excepteddate);
+				preparedStmt.setDouble(7, Double.parseDouble(Amountoffunds));
+				preparedStmt.setString(8, paymentdesc);
+				// execute the statement
 		 
-		 preparedStmt.execute();
-		 con.close();
-		 output = "Inserted successfully";
+				preparedStmt.execute();
+				con.close();
+				output = "Inserted successfully";
 			}
 			catch (Exception e)
 			{
@@ -64,7 +64,7 @@ public class FundProposal {
 			return output;
 		 }
 		
-		//read funds
+		//read funds details
 		
 		public String readFunds()
 		{
@@ -125,7 +125,7 @@ public class FundProposal {
 			return output;
 		}
 		
-		// update 
+		// update funds details
 		
 		public String updatefunds(String ID,String fundname, String projrequrment, String companyname, String typeofproject,String Excepteddate,String Amountoffunds, String paymentdesc )
 
@@ -136,10 +136,14 @@ public class FundProposal {
 			 Connection con = connect();
 			 if (con == null)
 			 {return "Error while connecting to the database for updating."; }
+			 
 			 // create a prepared statement
+			 
 			 String query = "UPDATE fund_proposal_t SET fundName=?,projRequrment=?,companyName=?,typeOfProject=?,ExceptedDate=?,AmountOfFunds=?,paymentDesc=? WHERE fundID=?";
 			 PreparedStatement preparedStmt = con.prepareStatement(query);
+			 
 			 // binding values
+			 
 			 preparedStmt.setString(1, fundname);
 			 preparedStmt.setString(2, projrequrment);
 			 preparedStmt.setString(3, companyname);
@@ -148,45 +152,53 @@ public class FundProposal {
 			 preparedStmt.setDouble(6, Double.parseDouble(Amountoffunds));
 			 preparedStmt.setString(7, paymentdesc);
 			 preparedStmt.setInt(8, Integer.parseInt(ID));
+			 
 			 // execute the statement
+			 
 			 preparedStmt.execute();
 			 con.close();
 			 output = "Updated successfully";
 			 }
 			 catch (Exception e)
 			 {
-			 output = "Error while updating the item.";
+			 output = "Error while updating the funds etails.";
 			 System.err.println(e.getMessage());
 			 }
 			 return output;
 		 }
 		
-		//delete
+		//delete funds details
 		
 		public String deleteFunds(String fundID)
-		 {
-		 String output = "";
-		 try
-		 {
-		 Connection con = connect();
-		 if (con == null)
-		 {return "Error while connecting to the database for deleting."; }
-		 // create a prepared statement
-		 String query = "delete from fund_proposal_t where fundID=?";
-		 PreparedStatement preparedStmt = con.prepareStatement(query);
-		 // binding values
-		 preparedStmt.setInt(1, Integer.parseInt(fundID));
-		 // execute the statement
-		 preparedStmt.execute();
-		 con.close();
-		 output = "Deleted successfully";
-		 }
-		 catch (Exception e)
-		 {
-		 output = "Error while deleting the funds.";
-		 System.err.println(e.getMessage());
-		 }
-		 return output;
+		{
+			
+			String output = "";
+			try
+			{
+				Connection con = connect();
+				if (con == null)
+				{return "Error while connecting to the database for deleting."; }
+				
+				// create a prepared statement
+				String query = "delete from fund_proposal_t where fundID=?";
+				PreparedStatement preparedStmt = con.prepareStatement(query);
+				
+				// binding values
+				
+				preparedStmt.setInt(1, Integer.parseInt(fundID));
+				
+				// execute the statement
+				
+				preparedStmt.execute();
+				con.close();
+				output = "Deleted successfully";
+			}
+			catch (Exception e)
+			{
+				output = "Error while deleting the funds details.";
+				System.err.println(e.getMessage());
+			}
+			return output;
 		 }
 		
 		

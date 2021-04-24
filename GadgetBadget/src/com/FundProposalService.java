@@ -51,8 +51,11 @@ public class FundProposalService {
 	public String updatefunds(String funddata)
 	{
 	//Convert the input string to a JSON object
+		
 	 JsonObject fundObject = new JsonParser().parse(funddata).getAsJsonObject();
+	 
 	//Read the values from the JSON object
+	 
 	 String fundID = fundObject.get("fundID").getAsString();
 	 String fundName = fundObject.get("fundName").getAsString();
 	 String projRequrment = fundObject.get("projRequrment").getAsString();
@@ -76,7 +79,7 @@ public class FundProposalService {
 	//Convert the input string to an XML document
 	 Document doc = Jsoup.parse(funddata, "", Parser.xmlParser());
 
-	//Read the value from the element <itemID>
+	//Read the value from the element <fundID>
 	 String fundID = doc.select("fundID").text();
 	 String output = fundObj.deleteFunds(fundID);
 	return output;
