@@ -16,7 +16,7 @@ public class UserAll {
 		 /*making the connection the connection
 		  * with database -> userdetailsdb */
 		 
-		 con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/userdetailsdb", "root", "");
+		 con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/gadgetbadget", "root", "");
 	 }
 	//catch exception when connection fail	 
 	 catch (Exception ex)
