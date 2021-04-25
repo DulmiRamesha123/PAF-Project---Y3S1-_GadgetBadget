@@ -3,14 +3,14 @@ package com;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
  
-import model.UserBuyer;
+import model.UserAll;
  
 @Path("/Buyers")
 
-public class UsersBuyersService {
+public class UsersReturnOnlyBuyerService {
 	
 	
-		UserBuyer buyerObj = new UserBuyer();
+		UserAll buyerObj = new UserAll();
 		@GET
 		@Path("/")
 		@Produces(MediaType.TEXT_HTML)

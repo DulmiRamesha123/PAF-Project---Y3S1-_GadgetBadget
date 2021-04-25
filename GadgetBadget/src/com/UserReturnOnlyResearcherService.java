@@ -5,23 +5,21 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import model.UserBuyer;
+import model.UserAll;
 
-@Path("/Funders")
-
-
-public class UserFunderService {
+@Path("/Researchers")
+public class UserReturnOnlyResearcherService {
 	
-	UserBuyer funderObj = new UserBuyer();
+	UserAll researcherObj = new UserAll();
 	@GET
 	@Path("/")
 	@Produces(MediaType.TEXT_HTML)
 	
 	//Read user objects
 	
-	public String readFunders()
+	public String readBuyers()
 	 {
-		return funderObj.readFunders();
+		return researcherObj.readResearchers();
 	 }
 
 }

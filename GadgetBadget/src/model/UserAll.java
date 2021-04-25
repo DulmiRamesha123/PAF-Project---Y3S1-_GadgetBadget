@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class UserBuyer {
+public class UserAll {
 	private Connection connect()
 	 {
 		 Connection con = null;
